@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Category;
+
 
 class CategoriesController extends Controller
 {
@@ -13,7 +15,8 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::orderBy('created_at','DESC')->get();
+        return view('categories.index',compact('categories'));
     }
 
     /**
@@ -34,7 +37,17 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validation
+        $this->validate($request,[
+            'name' => 'required|max:40|min:2|unique:categories'
+        ]);
+
+
+        $category = new Category();
+        $category->name = $request->name;
+        $category->save();
+        flash('Category created successfully')->success();
+        return back();
     }
 
     /**

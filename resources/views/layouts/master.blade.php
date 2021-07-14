@@ -15,10 +15,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Main Sidebar Container -->
  @include('layouts.partials._sidebar')
   @include('layouts.partials._navbar')
+
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
+      @include('flash::message')
     <!-- Content Header (Page header) -->
-    @yield('content')
+      @yield('content')
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
@@ -28,8 +31,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- /.control-sidebar -->
 
   <!-- Main Footer -->
-  @include('layouts.partials._footer')
+ 
 </div>
+ @include('layouts.partials._footer')
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
