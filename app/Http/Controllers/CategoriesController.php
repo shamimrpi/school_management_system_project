@@ -58,7 +58,7 @@ class CategoriesController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -69,7 +69,8 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::findOrFail($id);
+        return view('categories.edit',compact('category'));
     }
 
     /**
@@ -81,7 +82,17 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         //validation
+        $this->validate($request,[
+            'name' => 'required|max:40|min:2|unique:categories,name,'.$id
+        ]);
+
+        $category = Category::findOrFail($id);
+        $category->name = $request->name;
+        $category->save();
+
+        flash('Category updated successfully')->success();
+        return back();
     }
 
     /**
@@ -92,6 +103,10 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        //
+         $category = Category::findOrFail($id);
+         $category->delete();
+
+         flash('Category delete successfully')->error();
+        return back();
     }
 }

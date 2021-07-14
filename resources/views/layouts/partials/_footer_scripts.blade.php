@@ -5,6 +5,8 @@
 <!-- AdminLTE App -->
 <script src="{{asset('admin')}}/dist/js/adminlte.min.js"></script>
 
+
+<!-- data table -->
 <script src="{{asset('admin')}}/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="{{asset('admin')}}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="{{asset('admin')}}/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
@@ -17,8 +19,13 @@
 <script src="{{asset('admin')}}/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="{{asset('admin')}}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="{{asset('admin')}}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<!-- sweet alert -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 <script>
   $(function () {
+  	$('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
       "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
@@ -32,9 +39,25 @@
       "autoWidth": false,
       "responsive": true,
     });
+
+    $(".sa-delete").on('click',function(){
+    	let form_id = $(this).data("form-id");
+    	swal({
+			  title: "Are you sure?",
+			  text: "Once deleted, you will not be able to recover this imaginary file!",
+			  icon: "warning",
+			  buttons: true,
+			  dangerMode: true,
+			})
+			.then((willDelete) => {
+			  if (willDelete) {
+			  	$('#'+form_id).submit();
+			  	
+			  }
+			});
+    	});
+
   });
 </script>
-<script>
-$('div.alert').not('.alert-important').delay(3000).fadeOut(350);
-</script>
+
 @stack('scripts')
