@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Brand;
+use App\Models\Size;
 
-class BrandsController extends Controller
+class SizesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class BrandsController extends Controller
      */
     public function index()
     {
-         $brands = Brand::orderBy('created_at','DESC')->get();
-        return view('brands.index',compact('brands'));
+        $sizes = Size::orderBy('created_at','DESC')->get();
+        return view('sizes.index',compact('sizes'));
     }
 
     /**
@@ -25,7 +25,7 @@ class BrandsController extends Controller
      */
     public function create()
     {
-        return view('brands.create');
+        return view('sizes.create');
     }
 
     /**
@@ -37,14 +37,14 @@ class BrandsController extends Controller
     public function store(Request $request)
     {
          $this->validate($request,[
-            'name' => 'required|max:40|min:2|unique:brands'
+            'size' => 'required|max:20|min:1|unique:sizes'
         ]);
 
 
-        $brand = new Brand();
-        $brand->name = $request->name;
-        $brand->save();
-        flash('Brand created successfully')->success();
+        $size = new Size();
+        $size->size = $request->size;
+        $size->save();
+        flash('size created successfully')->success();
         return back();
     }
 
@@ -67,8 +67,8 @@ class BrandsController extends Controller
      */
     public function edit($id)
     {
-        $brand = Brand::findOrFail($id);
-        return view('categories.edit',compact('brand'));
+          $size = Size::findOrFail($id);
+        return view('sizes.edit',compact('size'));
     }
 
     /**
@@ -81,14 +81,14 @@ class BrandsController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request,[
-            'name' => 'required|max:40|min:2|unique:brands,name,'.$id
+            'size' => 'required|max:40|min:1|unique:sizes,size,'.$id
         ]);
 
-        $brand = Brand::findOrFail($id);
-        $brand->name = $request->name;
+        $brand = Size::findOrFail($id);
+        $brand->size = $request->size;
         $brand->save();
 
-        flash('Brand updated successfully')->success();
+        flash('size updated successfully')->success();
         return back();
     }
 
@@ -100,10 +100,10 @@ class BrandsController extends Controller
      */
     public function destroy($id)
     {
-         $brand = Brand::findOrFail($id);
-         $brand->delete();
+        $size = Size::findOrFail($id);
+         $size->delete();
 
-         flash('Brand delete successfully')->error();
+         flash('size delete successfully')->error();
         return back();
     }
 }
