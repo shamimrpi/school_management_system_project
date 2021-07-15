@@ -1,14 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CategoriesController;
-use App\Http\Controllers\BrandsController;
-use App\Http\Controllers\SizesController;
-use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\ShiftsController;
 use App\http\Controllers\GroupsController;
 use App\http\Controllers\YearsController;
+use App\http\Controllers\FeeCategoriesController;
+use App\http\Controllers\FeeAmountController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,6 +41,12 @@ Route::middleware(['auth:sanctum'])->group(function(){
 
 	//Year route list
 	Route::resource('/years',YearsController::class);
+
+	//fee Categories route list
+	Route::resource('/fee_categories',FeeCategoriesController::class);
+
+	//fee Categories Amount  route list
+	Route::resource('/fee_amounts',FeeAmountController::class);
 
 });
 

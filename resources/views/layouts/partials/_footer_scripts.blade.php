@@ -22,7 +22,38 @@
 <!-- sweet alert -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#myForm").validate({
+          rules:{
+            "fee_category_id":{
+              required: true,
+            },
+            "student_class_id[]":{
+              required: true,
+            },
+            "amount[]":{
+              required: true,
+            }
+          },
+          messages:{
 
+          },
+          errorElement:'span',
+          errorPlacement:function(error,element){
+            error:addClass('invalid-feedback');
+            element:closest('.form-group').append(errpr);
+          },
+          hightlight:function(element,errorClass,validClass){
+            element:addClass('is-invalid')
+          }
+          hightlight:function(element,errorClass,validClass){
+            element:removeClass('is-invalid')
+          }
+
+         });
+  })
+</script>
 <script>
   $(function () {
   	$('div.alert').not('.alert-important').delay(3000).fadeOut(350);
@@ -58,7 +89,25 @@
 			});
     	});
 
+    
+
+    var counter = 0;
+        $(document).on("click",".addeventmore",function(){
+          var whole_extra_item_add = $("#whole_extra_item_add").html();
+          $(this).closest(".add_item").append(whole_extra_item_add);
+            counter++;
+        });
+
+         $(document).on("click",".removeeventmore",function(event){
+          
+          $(this).closest("#delete_whole_extra_item_add").remove();
+            counter-=1;
+        });
+
+         
   });
 </script>
+
+ 
 
 @stack('scripts')
