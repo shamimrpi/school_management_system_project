@@ -8,7 +8,7 @@ use App\Http\Controllers\YearsController;
 use App\Http\Controllers\FeeCategoriesController;
 use App\Http\Controllers\FeeAmountController;
 use App\Http\Controllers\FeeCatAmountsCommonController;
-
+use App\Http\Controllers\ExamTypesController;
 
 
 /*
@@ -55,6 +55,10 @@ Route::middleware(['auth:sanctum'])->group(function(){
 	Route::put('/fee_amounts/{fee_category_id}/update',[FeeCatAmountsCommonController::class,'update'])->name('fee_amounts.update');
 
 	Route::get('/fee_amounts/{fee_category_id}/view',[FeeCatAmountsCommonController::class,'view'])->name('fee_amounts.view');
+
+
+	// exam type resource route define 
+	Route::resource('/examtypes',ExamTypesController::class);
 
 
 
