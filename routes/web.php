@@ -3,10 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\ShiftsController;
-use App\http\Controllers\GroupsController;
-use App\http\Controllers\YearsController;
-use App\http\Controllers\FeeCategoriesController;
-use App\http\Controllers\FeeAmountController;
+use App\Http\Controllers\GroupsController;
+use App\Http\Controllers\YearsController;
+use App\Http\Controllers\FeeCategoriesController;
+use App\Http\Controllers\FeeAmountController;
+use App\Http\Controllers\FeeCatAmountsCommonController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -46,7 +49,15 @@ Route::middleware(['auth:sanctum'])->group(function(){
 	Route::resource('/fee_categories',FeeCategoriesController::class);
 
 	//fee Categories Amount  route list
-	Route::resource('/fee_amounts',FeeAmountController::class);
+	Route::resource('/fee_amounts',FeeAmountController::class)->except(['show','edit','update']);
 
+	Route::get('/fee_amounts/{fee_category_id}/Catedit',[FeeCatAmountsCommonController::class,'edit'])->name('fee_amounts.edit');
+	Route::put('/fee_amounts/{fee_category_id}/update',[FeeCatAmountsCommonController::class,'update'])->name('fee_amounts.update');
+
+	Route::get('/fee_amounts/{fee_category_id}/view',[FeeCatAmountsCommonController::class,'view'])->name('fee_amounts.view');
+
+
+
+	
 });
 

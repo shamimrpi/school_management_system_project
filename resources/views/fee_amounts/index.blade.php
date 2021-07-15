@@ -28,17 +28,17 @@
                 <h5 class="card-title">Fee Category Amount List</h5>
                 <br><br>
 
-                  <a href="{{route('fee_amounts.create')}}" class="btn btn-info fa fa-plus"> Add Fee Category Amount</a>
+                  <a href="{{route('fee_amounts.create')}}" class="float-right btn btn-info fa fa-plus"> Add Fee Category Amount</a>
                 <br>
                 <br>
                   <table id="example1" class="table table-bordered table-striped">
                       <thead>
                         <tr>
                           <th>#SL</th>
-                          <th>Amount</th>
-                           <th>Class</th>
-                            <th>Fee Category</th>
+                          <th>Fee Category</th>
+                          
                           <th>Action</th>
+
                         </tr>
                       </thead>
                       <tbody>
@@ -46,15 +46,14 @@
                           @foreach($all_data as $key => $data)
                           <tr>
                             <td>{{$key+1}}</td>
-                            <td>{{$data->amount}}</td>
-                           <td>{{$data->student_class_id}}</td>
+                            <td>{{$data['fee_category']['name']}}</td>
 
-                            <td>{{$data->fee_category_id}}</td>
                             <td>
-                              <a href="{{route('fee_amounts.edit',$data->id)}}" class="btn btn-info fa fa-edit"></a>
-                              <a href="javascript:;" class="btn btn-danger fa fa-trash sa-delete" data-form-id="data-delete-{{$data->id}}"></a>
+                              <a href="{{route('fee_amounts.edit',$data->fee_category_id)}}" class="btn btn-info fa fa-edit"></a>
+                               <a href="{{route('fee_amounts.view',$data->fee_category_id)}}" class="btn btn-info fa fa-eye"></a>
+                              <a href="javascript:;" class="btn btn-danger fa fa-trash sa-delete" data-form-id="data-delete-{{$data->fee_category_id}}"></a>
 
-                              <form id="data-delete-{{$data->id}}" action="{{route('fee_categories.destroy',$data->id)}}" method="POST">
+                              <form id="data-delete-{{$data->fee_category_id}}" action="{{route('fee_categories.destroy',$data->fee_category_id)}}" method="POST">
                                 @csrf
                                 @method('DELETE')
                             

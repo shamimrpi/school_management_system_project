@@ -13,13 +13,14 @@ class FeeAmountController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Responsef
      */
     public function index()
     {
-       
-        $all_data = FeeCategoryAmount::all();
-        return view('fee_amounts.index',compact('all_data'));
+        $classes = Student_class::all();
+        $f_cats = Fee_category::all();
+        $all_data = FeeCategoryAmount::select('fee_category_id')->groupBy('fee_category_id')->get();
+        return view('fee_amounts.index',compact('all_data','classes','f_cats'));
     }
 
     /**
@@ -87,11 +88,7 @@ class FeeAmountController extends Controller
      */
     public function edit($id)
     {
-        $classes = Student_class::all();
-        $f_cats = Fee_category::all();
-        $edit_data = 'edit_data';
-        $f_amount = FeeCategoryAmount::findOrFail($id);
-        return view('fee_amounts.edit_create',compact(['f_amount','edit_data','classes','f_cats']));
+       
     }
 
     /**
@@ -101,25 +98,10 @@ class FeeAmountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $fee_category_id)
     {
         
-         //validation
-        $this->validate($request,[
-           
-            'amount[]' => 'required|max:10|min:2',
-            'fee_category_id' => 'required',
-            'student_class_id[]' => 'required'
-        ]);
-
-        $f_amount = FeeCategoryAmount::findOrFail($id);
-        $f_amount->amount = $request->amount;
-        $f_amount->fee_category_id = $request->fee_category_id;
-        $f_amount->student_class_id = $request->student_class_id;
-        $f_amount->save();
-
-        flash('Fee Amount Category update successfully')->success();
-        return back();
+        
     }
 
     /**
@@ -130,10 +112,6 @@ class FeeAmountController extends Controller
      */
     public function destroy($id)
     {
-          $f_amount = FeeCategoriesAmount::findOrFail($id);
-          $f_amount->delete();
-
-         flash('Fee Amount Category delete successfully')->error();
-        return back();
+         
     }
 }

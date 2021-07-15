@@ -74,6 +74,14 @@
                   <p>Fee Category</p>
                 </a>
               </li>
+
+               <li class="nav-item">
+                <a href="{{route('fee_amounts.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Fee Amount List</p>
+                </a>
+              </li>
+
             </ul>
           </li>
 
