@@ -39,22 +39,29 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('categories.index')}}" class="nav-link">
+                <a href="{{route('classes.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Category</p>
+                  <p>Classes</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{route('brands.index')}}" class="nav-link">
+                <a href="{{route('shifts.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Brands</p>
+                  <p>Shifts</p>
                 </a>
               </li>
 
                <li class="nav-item">
-                <a href="{{route('sizes.index')}}" class="nav-link">
+                <a href="{{route('groups.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Sizes</p>
+                  <p>Groups</p>
+                </a>
+              </li>
+
+               <li class="nav-item">
+                <a href="{{route('years.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Year</p>
                 </a>
               </li>
 

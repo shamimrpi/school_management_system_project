@@ -1,16 +1,16 @@
 @extends('layouts.master')
 @section('content')
-	
+  
  <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Size</h1>
+            <h1 class="m-0">Categories</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-              <li class="breadcrumb-item active">Size Create</li>
+              <li class="breadcrumb-item active">Brand Create</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -25,16 +25,17 @@
 
             <div class="card card-primary card-outline">
               <div class="card-body">
-                <h5 class="card-title">Create Size</h5>
+                <h5 class="card-title">Edit Class</h5>
                 <br>
-                <form action="{{route('sizes.store')}}" method="POST">
-                	@csrf
+                <form action="{{route('classes.update',$s_class->id)}}" method="POST">
+                  @csrf
+                  @method('PUT')
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Size</label>
-                    <input type="text" name="size" class="form-control" id="size" placeholder="Enter Size ">
-                    @if($errors->has('size'))
-                    <span class="text-danger">{{$errors->first('size')}}</span>
+                    <label for="exampleInputEmail1">Class Name</label>
+                    <input type="text" name="name" class="form-control" id="name" placeholder="Enter Class name" value="{{$s_class->name}}">
+                    @if($errors->has('name'))
+                    <span class="text-danger">{{$errors->first('name')}}</span>
                     @endif
                   </div>
             

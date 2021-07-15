@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Brand;
+use App\Models\Year;
 
-class BrandsController extends Controller
+class YearsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class BrandsController extends Controller
      */
     public function index()
     {
-         $brands = Brand::orderBy('created_at','DESC')->get();
-        return view('brands.index',compact('brands'));
+        $years = Year::all();
+        return view('years.index',compact('years'));
     }
 
     /**
@@ -25,7 +25,7 @@ class BrandsController extends Controller
      */
     public function create()
     {
-        return view('brands.create');
+        return view('years.create');
     }
 
     /**
@@ -36,15 +36,16 @@ class BrandsController extends Controller
      */
     public function store(Request $request)
     {
-         $this->validate($request,[
-            'name' => 'required|max:40|min:2|unique:brands'
+          //validation
+        $this->validate($request,[
+            'name' => 'required|max:40|min:2|unique:shifts'
         ]);
 
 
-        $brand = new Brand();
-        $brand->name = $request->name;
-        $brand->save();
-        flash('Brand created successfully')->success();
+        $year = new Year();
+        $year->name = $request->name;
+        $year->save();
+        flash('year created successfully')->success();
         return back();
     }
 
@@ -67,8 +68,8 @@ class BrandsController extends Controller
      */
     public function edit($id)
     {
-        $brand = Brand::findOrFail($id);
-        return view('categories.edit',compact('brand'));
+       $year = Year::findOrFail($id);
+        return view('years.edit',compact('year'));
     }
 
     /**
@@ -80,15 +81,16 @@ class BrandsController extends Controller
      */
     public function update(Request $request, $id)
     {
+         //validation
         $this->validate($request,[
-            'name' => 'required|max:40|min:2|unique:brands,name,'.$id
+            'name' => 'required|max:40|min:2|unique:student_classes,name,'.$id
         ]);
 
-        $brand = Brand::findOrFail($id);
-        $brand->name = $request->name;
-        $brand->save();
+        $year = Year::findOrFail($id);
+        $year->name = $request->name;
+        $year->save();
 
-        flash('Brand updated successfully')->success();
+        flash('year updated successfully')->success();
         return back();
     }
 
@@ -100,10 +102,10 @@ class BrandsController extends Controller
      */
     public function destroy($id)
     {
-         $brand = Brand::findOrFail($id);
-         $brand->delete();
+        $year = Year::findOrFail($id);
+         $year->delete();
 
-         flash('Brand delete successfully')->error();
+         flash('year delete successfully')->error();
         return back();
     }
 }

@@ -4,7 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\BrandsController;
 use App\Http\Controllers\SizesController;
-
+use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\ClassesController;
+use App\Http\Controllers\ShiftsController;
+use App\http\Controllers\GroupsController;
+use App\http\Controllers\YearsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,12 +30,18 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 
 Route::middleware(['auth:sanctum'])->group(function(){
-	//category route list
-	Route::resource('/categories',CategoriesController::class);
-	//brand route list
-	Route::resource('/brands',BrandsController::class);
+	
+	//Student Class route list
+	Route::resource('/classes',ClassesController::class);
 
-	//Size route list
-	Route::resource('/sizes',SizesController::class);
+	//Shift route list
+	Route::resource('/shifts',ShiftsController::class);
+
+	//Group route list
+	Route::resource('/groups',GroupsController::class);
+
+	//Year route list
+	Route::resource('/years',YearsController::class);
+
 });
 

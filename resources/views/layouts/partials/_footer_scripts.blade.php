@@ -21,6 +21,7 @@
 <script src="{{asset('admin')}}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <!-- sweet alert -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script type="text/javascript" src="{{asset('js/app.js')}}"></script>
 
 <script>
   $(function () {

@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Category;
+use App\Models\Student_class;
 
-
-class CategoriesController extends Controller
+class ClassesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,8 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categories = Category::orderBy('created_at','DESC')->get();
-        return view('categories.index',compact('categories'));
+        $classes = Student_class::all();
+        return view('classes.index',compact('classes'));
     }
 
     /**
@@ -26,7 +25,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        return view('categories.create');
+        return view('classes.create');
     }
 
     /**
@@ -37,16 +36,16 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //validation
+         //validation
         $this->validate($request,[
-            'name' => 'required|max:40|min:2|unique:categories'
+            'name' => 'required|max:40|min:2|unique:student_classes'
         ]);
 
 
-        $category = new Category();
-        $category->name = $request->name;
-        $category->save();
-        flash('Category created successfully')->success();
+        $s_class = new Student_class();
+        $s_class->name = $request->name;
+        $s_class->save();
+        flash('Class created successfully')->success();
         return back();
     }
 
@@ -58,7 +57,7 @@ class CategoriesController extends Controller
      */
     public function show($id)
     {
-        
+        //
     }
 
     /**
@@ -69,8 +68,8 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::findOrFail($id);
-        return view('categories.edit',compact('category'));
+        $s_class = Student_class::findOrFail($id);
+        return view('classes.edit',compact('s_class'));
     }
 
     /**
@@ -82,16 +81,16 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-         //validation
+          //validation
         $this->validate($request,[
-            'name' => 'required|max:40|min:2|unique:categories,name,'.$id
+            'name' => 'required|max:40|min:2|unique:student_classes,name,'.$id
         ]);
 
-        $category = Category::findOrFail($id);
-        $category->name = $request->name;
-        $category->save();
+        $s_class = Student_class::findOrFail($id);
+        $s_class->name = $request->name;
+        $s_class->save();
 
-        flash('Category updated successfully')->success();
+        flash('Class updated successfully')->success();
         return back();
     }
 
@@ -103,10 +102,10 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-         $category = Category::findOrFail($id);
-         $category->delete();
+        $s_class = Student_class::findOrFail($id);
+         $s_class->delete();
 
-         flash('Category delete successfully')->error();
+         flash('Class delete successfully')->error();
         return back();
     }
 }

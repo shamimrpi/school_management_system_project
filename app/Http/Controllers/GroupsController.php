@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Size;
+use App\Models\Group;
 
-class SizesController extends Controller
+class GroupsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class SizesController extends Controller
      */
     public function index()
     {
-        $sizes = Size::orderBy('created_at','DESC')->get();
-        return view('sizes.index',compact('sizes'));
+        $groups = Group::all();
+        return view('groups.index',compact('groups'));
     }
 
     /**
@@ -25,7 +25,7 @@ class SizesController extends Controller
      */
     public function create()
     {
-        return view('sizes.create');
+        return view('groups.create');
     }
 
     /**
@@ -36,15 +36,16 @@ class SizesController extends Controller
      */
     public function store(Request $request)
     {
-         $this->validate($request,[
-            'size' => 'required|max:20|min:1|unique:sizes'
+         //validation
+        $this->validate($request,[
+            'name' => 'required|max:40|min:2|unique:groups'
         ]);
 
 
-        $size = new Size();
-        $size->size = $request->size;
-        $size->save();
-        flash('size created successfully')->success();
+        $group = new Group();
+        $group->name = $request->name;
+        $group->save();
+        flash('group created successfully')->success();
         return back();
     }
 
@@ -67,8 +68,8 @@ class SizesController extends Controller
      */
     public function edit($id)
     {
-          $size = Size::findOrFail($id);
-        return view('sizes.edit',compact('size'));
+        $group = Group::findOrFail($id);
+        return view('groups.edit',compact('group'));
     }
 
     /**
@@ -80,15 +81,16 @@ class SizesController extends Controller
      */
     public function update(Request $request, $id)
     {
+          //validation
         $this->validate($request,[
-            'size' => 'required|max:40|min:1|unique:sizes,size,'.$id
+            'name' => 'required|max:40|min:2|unique:groups,name,'.$id
         ]);
 
-        $brand = Size::findOrFail($id);
-        $brand->size = $request->size;
-        $brand->save();
+        $group = Group::findOrFail($id);
+        $group->name = $request->name;
+        $group->save();
 
-        flash('size updated successfully')->success();
+        flash('group updated successfully')->success();
         return back();
     }
 
@@ -100,10 +102,10 @@ class SizesController extends Controller
      */
     public function destroy($id)
     {
-        $size = Size::findOrFail($id);
-         $size->delete();
+        $group = Group::findOrFail($id);
+         $group->delete();
 
-         flash('size delete successfully')->error();
+         flash('group delete successfully')->error();
         return back();
     }
 }
