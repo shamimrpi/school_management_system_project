@@ -3,24 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\FeeCategoryAmount;
-use App\Models\Fee_category;
+use App\Models\AssignSubject;
+use App\Models\Subject;
 use App\Models\Student_class;
 
 
-class FeeAmountController extends Controller
+class AsignSubjectsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Responsef
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $classes = Student_class::all();
-        $f_cats = Fee_category::all();
-        $all_data = FeeCategoryAmount::select('fee_category_id')->groupBy('fee_category_id')->get();
-        return view('fee_amounts.index',compact('all_data','classes','f_cats'));
+        $data['asignsubjects'] = AssignSubject::select('student_class_id')->groupBy('student_class_id')->get();
+        return view('asignsubjects.index',$data);
     }
 
     /**
@@ -31,9 +29,9 @@ class FeeAmountController extends Controller
     public function create()
     {
         $classes = Student_class::all();
-        $f_cats = Fee_category::all();
+        $subjects = Subject::all();
         $create_data = 'create_data';
-        return view('fee_amounts.edit_create',compact(['create_data','classes','f_cats']));
+        return view('asignsubjects.create',compact(['create_data','classes','subjects']));   
     }
 
     /**
@@ -44,23 +42,22 @@ class FeeAmountController extends Controller
      */
     public function store(Request $request)
     {
-      
-         $countClass = count($request->student_class_id);
+
+         $countClass = count($request->subject_id);
         if($countClass != NULL){
              for ($i=0; $i <$countClass; $i++) { 
-                $f_amount = new FeeCategoryAmount();
-                $f_amount->fee_category_id = $request->fee_category_id;
-                $f_amount->amount = $request->amount[$i];
-                $f_amount->student_class_id = $request->student_class_id[$i];
-                $f_amount->save();
+                $a_subject = new AssignSubject();
+                $a_subject->student_class_id = $request->student_class_id;
+                $a_subject->subject_id = $request->subject_id[$i];
+                $a_subject->full_mark = $request->full_mark[$i];
+                $a_subject->pass_mark = $request->pass_mark[$i];
+                $a_subject->subjective_mark = $request->subjective_mark[$i];
+                $a_subject->save();
             }
 
         }
-        flash('Fee Amount Category created successfully')->success();
-                return redirect()->route('fee_amounts.index');
-       
-
-        
+        flash('Assign Subject created successfully')->success();
+                return redirect()->route('assign.index');
     }
 
     /**
@@ -82,7 +79,7 @@ class FeeAmountController extends Controller
      */
     public function edit($id)
     {
-       
+        //
     }
 
     /**
@@ -92,10 +89,9 @@ class FeeAmountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $fee_category_id)
+    public function update(Request $request, $id)
     {
-        
-        
+        //
     }
 
     /**
@@ -106,6 +102,6 @@ class FeeAmountController extends Controller
      */
     public function destroy($id)
     {
-         
+        //
     }
 }

@@ -28,7 +28,7 @@
                 <h5 class="card-title">Shift List</h5>
                 <br><br>
 
-                  <a href="{{route('classes.create')}}" class="btn btn-info fa fa-plus"> Add Shift</a>
+                  <a href="{{route('shifts.create')}}" class="btn btn-info fa fa-plus"> Add Shift</a>
                 <br>
                 <br>
                   <table id="example1" class="table table-bordered table-striped">
@@ -49,7 +49,7 @@
                               <a href="{{route('shifts.edit',$shift->id)}}" class="btn btn-info fa fa-edit"></a>
                               <a href="javascript:;" class="btn btn-danger fa fa-trash sa-delete" data-form-id="shift-delete-{{$shift->id}}"></a>
 
-                              <form id="shift-delete-{{$shift->id}}" action="{{route('classes.destroy',$shift->id)}}" method="POST">
+                              <form id="shift-delete-{{$shift->id}}" action="{{route('shifts.destroy',$shift->id)}}" method="POST">
                                 @csrf
                                 @method('DELETE')
                             

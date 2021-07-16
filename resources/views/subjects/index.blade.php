@@ -5,12 +5,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Group List</h1>
+            <h1 class="m-0">Suject Manage</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-              <li class="breadcrumb-item active">Group List</li>
+              <li class="breadcrumb-item active">Subjects List</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -25,10 +25,10 @@
 
             <div class="card card-primary card-outline">
               <div class="card-body">
-                <h5 class="card-title">Group List</h5>
+                <h5 class="card-title">Subjects List</h5>
                 <br><br>
 
-                  <a href="{{route('groups.create')}}" class="btn btn-info fa fa-plus"> Add Group</a>
+                  <a href="{{route('subjects.create')}}" class="btn btn-info fa fa-plus"> Add Subject</a>
                 <br>
                 <br>
                   <table id="example1" class="table table-bordered table-striped">
@@ -40,16 +40,16 @@
                         </tr>
                       </thead>
                       <tbody>
-                        @if($groups)
-                          @foreach($groups as $key => $group)
+                        @if($subjects)
+                          @foreach($subjects as $key => $subject)
                           <tr>
                             <td>{{$key+1}}</td>
-                            <td>{{$group->name}}</td>
+                            <td>{{$subject->name}}</td>
                             <td>
-                              <a href="{{route('groups.edit',$group->id)}}" class="btn btn-info fa fa-edit"></a>
-                              <a href="javascript:;" class="btn btn-danger fa fa-trash sa-delete" data-form-id="group-delete-{{$group->id}}"></a>
+                              <a href="{{route('subjects.edit',$subject->id)}}" class="btn btn-info fa fa-edit"></a>
+                              <a href="javascript:;" class="btn btn-danger fa fa-trash sa-delete" data-form-id="subject-delete-{{$subject->id}}"></a>
 
-                              <form id="group-delete-{{$group->id}}" action="{{route('groups.destroy',$group->id)}}" method="POST">
+                              <form id="subject-delete-{{$subject->id}}" action="{{route('subjects.destroy',$subject->id)}}" method="POST">
                                 @csrf
                                 @method('DELETE')
                             

@@ -5,12 +5,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Group List</h1>
+            <h1 class="m-0">Fee Category Amount List</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-              <li class="breadcrumb-item active">Group List</li>
+              <li class="breadcrumb-item active">Subject Mark Assign List</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -25,31 +25,35 @@
 
             <div class="card card-primary card-outline">
               <div class="card-body">
-                <h5 class="card-title">Group List</h5>
+                <h5 class="card-title">Subject Mark Assign List</h5>
                 <br><br>
 
-                  <a href="{{route('groups.create')}}" class="btn btn-info fa fa-plus"> Add Group</a>
+                  <a href="{{route('assign.create')}}" class="float-right btn btn-info fa fa-plus"> Add Subject Assign Mark</a>
                 <br>
                 <br>
                   <table id="example1" class="table table-bordered table-striped">
                       <thead>
                         <tr>
                           <th>#SL</th>
-                          <th>Name</th>
+                          <th>Class Name</th>
+                          
                           <th>Action</th>
+
                         </tr>
                       </thead>
                       <tbody>
-                        @if($groups)
-                          @foreach($groups as $key => $group)
+                        @if($asignsubjects)
+                          @foreach($asignsubjects as $key => $data)
                           <tr>
                             <td>{{$key+1}}</td>
-                            <td>{{$group->name}}</td>
-                            <td>
-                              <a href="{{route('groups.edit',$group->id)}}" class="btn btn-info fa fa-edit"></a>
-                              <a href="javascript:;" class="btn btn-danger fa fa-trash sa-delete" data-form-id="group-delete-{{$group->id}}"></a>
+                            <td>{{$data->studentClass->name}}</td>
 
-                              <form id="group-delete-{{$group->id}}" action="{{route('groups.destroy',$group->id)}}" method="POST">
+                            <td>
+                              <a href="{{route('asign.subjects.edit',$data->student_class_id)}}" class="btn btn-info fa fa-edit"></a>
+                               <a href="{{route('asign.subjects.view',$data->student_class_id)}}" class="btn btn-info fa fa-eye"></a>
+                              <a href="javascript:;" class="btn btn-danger fa fa-trash sa-delete" data-form-id="data-delete-{{$data->student_class_id}}"></a>
+
+                              <form id="data-delete-{{$data->fee_category_id}}" action="{{route('asign.subjects.delete',$data->student_class_id)}}" method="POST">
                                 @csrf
                                 @method('DELETE')
                             

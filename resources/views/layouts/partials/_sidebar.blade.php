@@ -82,6 +82,29 @@
                 </a>
               </li>
 
+              <li class="nav-item">
+                <a href="{{route('subjects.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Subject</p>
+                </a>
+              </li>
+              
+               <li class="nav-item">
+                <a href="{{route('assign.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Asgin Subject</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{route('designations.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Designation</p>
+                </a>
+              </li>
+
+               
+
             </ul>
           </li>
 
