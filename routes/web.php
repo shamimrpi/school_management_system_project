@@ -13,8 +13,8 @@ use App\Http\Controllers\SubjectsController;
 use App\Http\Controllers\AsignSubjectsController;
 use App\Http\Controllers\AsignSubjectsCommonController;
 use App\Http\Controllers\DesignationsController;
-
-
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\Login\LoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,6 +37,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::middleware(['auth:sanctum'])->group(function(){
 	
+Route::prefix('admin')->group(function(){
+
+
 	//Student Class route list
 	Route::resource('/classes',ClassesController::class);
 
@@ -78,7 +81,18 @@ Route::middleware(['auth:sanctum'])->group(function(){
 
 
 	// Designations resource route define 
-	Route::resource('/designations',DesignationsController::class);
+	Route::resource('/designations',DesignationsController::class)->except('show');
+
+
 	
+	});
+	// users Controller route
+	Route::get('/users/create',[UsersController::class,'create'])->name('users.create');
+	Route::post('/users/store',[UsersController::class,'store'])->name('users.store');
+	Route::get('users/{id}/edit',[UsersController::class,'edit'])->name('users.edit');
+	Route::put('users/{id}/update',[UsersController::class,'update'])->name('users.update');
+	Route::get('/users',[UsersController::class,'index'])->name('users');
+	Route::get('logout',[LoginController::class,'logout'])->name('logout');
+
 });
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Designation;
 
 class DesignationsController extends Controller
 {
@@ -13,7 +14,8 @@ class DesignationsController extends Controller
      */
     public function index()
     {
-        //
+         $designations = Designation::all();
+        return view('designations.index',compact('designations'));
     }
 
     /**
@@ -23,7 +25,7 @@ class DesignationsController extends Controller
      */
     public function create()
     {
-        //
+        return view('designations.create');
     }
 
     /**
@@ -34,7 +36,17 @@ class DesignationsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validation
+        $this->validate($request,[
+            'name' => 'required|max:40|min:2|unique:groups'
+        ]);
+
+
+        $designation = new Designation();
+        $designation->name = $request->name;
+        $designation->save();
+        flash('designation created successfully')->success();
+        return redirect()->route('designations.index');
     }
 
     /**
@@ -56,7 +68,8 @@ class DesignationsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $designation = Designation::findOrFail($id);
+        return view('designations.edit',compact('designation'));
     }
 
     /**
@@ -68,7 +81,17 @@ class DesignationsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+          //validation
+        $this->validate($request,[
+            'name' => 'required|max:40|min:2|unique:groups,name,'.$id
+        ]);
+
+        $designation = Designation::findOrFail($id);
+        $designation->name = $request->name;
+        $designation->save();
+
+        flash('group updated successfully')->success();
+        return redirect()->route('designations.index');
     }
 
     /**
@@ -79,6 +102,10 @@ class DesignationsController extends Controller
      */
     public function destroy($id)
     {
-        //
+         $designation = Designation::findOrFail($id);
+         $designation->delete();
+
+         flash('designation delete successfully')->error();
+        return back();
     }
 }

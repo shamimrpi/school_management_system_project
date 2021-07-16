@@ -14,6 +14,7 @@ class ClassesController extends Controller
      */
     public function index()
     {
+        
         $classes = Student_class::all();
         return view('classes.index',compact('classes'));
     }

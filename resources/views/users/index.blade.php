@@ -5,12 +5,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Designation List</h1>
+            <h1 class="m-0">Group List</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-              <li class="breadcrumb-item active">Designation List</li>
+              <li class="breadcrumb-item active">Group List</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -25,10 +25,10 @@
 
             <div class="card card-primary card-outline">
               <div class="card-body">
-                <h5 class="card-title">Designation List</h5>
+                <h5 class="card-title">Group List</h5>
                 <br><br>
 
-                  <a href="{{route('designations.create')}}" class="float-right btn btn-info fa fa-plus"> Add Designation</a>
+                  <a href="{{route('users.create')}}" class="btn btn-info fa fa-plus float-sm-right"> Add User</a>
                 <br>
                 <br>
                   <table id="example1" class="table table-bordered table-striped">
@@ -36,36 +36,31 @@
                         <tr>
                           <th>#SL</th>
                           <th>Name</th>
-                          <th>Action</th>
+                          <th>Email</th>
+                          <th>Password</th>
+                          <th>Role</th>
                         </tr>
                       </thead>
                       <tbody>
-                        @if($designations)
-                          @foreach($designations as $key => $designation)
+                        @if($users)
+                          @foreach($users as $key => $user)
                           <tr>
                             <td>{{$key+1}}</td>
-                            <td>{{$designation->name}}</td>
-                            <td>
-                              <a href="{{route('designations.edit',$designation->id)}}" class="btn btn-info fa fa-edit"></a>
-                              <a href="javascript:;" class="btn btn-danger fa fa-trash sa-delete" data-form-id="designation-delete-{{$designation->id}}"></a>
-
-                              <form id="designation-delete-{{$designation->id}}" action="{{route('designations.destroy',$designation->id)}}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                            
-                               
-                              </form>
-                              
-                            </td>
+                            <td>{{$user->name}}</td>
+                            <td>{{$user->email}}</td>
+                            <td>{{$user->code}}</td>
+                            <td>{{$user->role}}</td>
                           </tr>
                           @endforeach
                         @endif
                       </tbody>
                       <tfoot>
                          <tr>
-                          <th>#SL</th>
+                           <th>#SL</th>
                           <th>Name</th>
-                          <th>Action</th>
+                          <th>Email</th>
+                          <th>Password</th>
+                          <th>Role</th>
                         </tr>
                       </tfoot>
                   </table>
