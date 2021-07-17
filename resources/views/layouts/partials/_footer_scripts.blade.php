@@ -62,7 +62,7 @@
           hightlight:function(element,errorClass,validClass){
             element:addClass('is-invalid')
           }
-          hightlight:function(element,errorClass,validClass){
+          unhightlight:function(element,errorClass,validClass){
             element:removeClass('is-invalid')
           }
 
