@@ -28,6 +28,7 @@
               <div class="card-body">
 
                 <h5 class="card-title">User Edit</h5>
+                <a href="{{route('users')}}" class="btn btn-info float-sm-right">User List</a>
                 <br>
                 <form action="{{route('users.update',$user->id)}}" method="POST">
                 	@csrf
@@ -69,8 +70,8 @@
                     <label for="role">Role</label>
                     <select class="form-control" name="role">
                       <option value="">Select Role</option>
-                      <option value="Admin">Admin</option>
-                      <option value="Operator">Operator</option>
+                      <option value="admin">Admin</option>
+                      <option value="operator">Operator</option>
                     </select>
                     @if($errors->has('name'))
                     <span class="text-danger">{{$errors->first('name')}}</span>

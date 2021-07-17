@@ -5,12 +5,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Group List</h1>
+            <h1 class="m-0">User Manage</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-              <li class="breadcrumb-item active">Group List</li>
+              <li class="breadcrumb-item active">User List</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -25,7 +25,7 @@
 
             <div class="card card-primary card-outline">
               <div class="card-body">
-                <h5 class="card-title">Group List</h5>
+                <h5 class="card-title">User List</h5>
                 <br><br>
 
                   <a href="{{route('users.create')}}" class="btn btn-info fa fa-plus float-sm-right"> Add User</a>
@@ -37,8 +37,9 @@
                           <th>#SL</th>
                           <th>Name</th>
                           <th>Email</th>
-                          <th>Password</th>
+                          <th>Code</th>
                           <th>Role</th>
+                          <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -50,6 +51,9 @@
                             <td>{{$user->email}}</td>
                             <td>{{$user->code}}</td>
                             <td>{{$user->role}}</td>
+                            <td>
+                              <a class="btn btn-info fa fa-edit" href="{{route('users.edit',$user->id)}}">
+                            </td>
                           </tr>
                           @endforeach
                         @endif
@@ -61,6 +65,7 @@
                           <th>Email</th>
                           <th>Password</th>
                           <th>Role</th>
+                          <th>Action</th>
                         </tr>
                       </tfoot>
                   </table>

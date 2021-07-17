@@ -30,13 +30,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
 
 
-Route::middleware(['auth:sanctum'])->group(function(){
-	
+Route::get('/login',[LoginController::class,'login'])->name('login');
+Route::post('/login',[LoginController::class,'authenticate'])->name('login.store');
+
+Route::middleware(['auth'])->group(function () {
+    //
+
 Route::prefix('admin')->group(function(){
 
 
@@ -86,13 +87,16 @@ Route::prefix('admin')->group(function(){
 
 	
 	});
+
 	// users Controller route
 	Route::get('/users/create',[UsersController::class,'create'])->name('users.create');
 	Route::post('/users/store',[UsersController::class,'store'])->name('users.store');
 	Route::get('users/{id}/edit',[UsersController::class,'edit'])->name('users.edit');
 	Route::put('users/{id}/update',[UsersController::class,'update'])->name('users.update');
 	Route::get('/users',[UsersController::class,'index'])->name('users');
-	Route::get('logout',[LoginController::class,'logout'])->name('logout');
+	Route::get('/logout',[LoginController::class,'logout'])->name('logout');
+	Route::get('/dashboard',[LoginController::class,'dashboard'])->name('dashboard');
 
-});
+});	
+
 

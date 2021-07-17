@@ -47,7 +47,7 @@
                      <div class="row">
                         <div class="col-md-5"> 
                           <div class="form-group">
-                            <label for="exampleInputEmail1">Select Fee Category Name</label>
+                            <label for="fee_category_id">Select Fee Category Name</label>
                             <select class="form-control" name="fee_category_id" required="1">
                               @foreach($f_cats as $f_cat)
                               <option  value="{{$f_cat->id}}">{{$f_cat->name}}</option>
@@ -62,7 +62,7 @@
                     <div class="row">
                      <div class="col-md-5"> 
                       <div class="form-group">
-                        <label for="exampleInputEmail1">Select Class Name</label>
+                        <label for="class_id">Select Class Name</label>
                         <select class="form-control" name="student_class_id[]" required="">
                           @foreach($classes as $class)
                           <option  value="{{$class->id}}">{{$class->name}}</option>
@@ -117,7 +117,7 @@
                      <div class="col-md-5"> 
                       <div class="form-group">
                         <label for="exampleInputEmail1">Select Class Name</label>
-                        <select class="form-control" name="student_class_id[]">
+                        <select class="form-control" name="student_class_id[]" required="">
                           @foreach($classes as $class)
                           <option  value="{{$class->id}}">{{$class->name}}</option>
                           @endforeach
@@ -131,7 +131,7 @@
                     <div class="col-md-5"> 
                      <div class="form-group">
                       <label for="exampleInputEmail1">Amount</label>
-                      <input type="text" name="amount[]" class="form-control" id="name" placeholder="Enter amount" value="{{(@$edit_data)?$f_amount->amouny:''}}">
+                      <input type="text" name="amount[]" class="form-control" id="name" placeholder="Enter amount" value="{{(@$edit_data)?$f_amount->amouny:''}}" required="">
                       @if($errors->has('amount'))
                       <span class="text-danger">{{$errors->first('amount')}}</span>
                       @endif
