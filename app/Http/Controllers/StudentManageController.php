@@ -28,23 +28,20 @@ class StudentManageController extends Controller
     public function store(Request $r)
     {
 
-    	
     			$checkYear = Year::find($r->year_id);
     			$checkYear = $checkYear->name;
     			$student = User::where('usertype','student')->orderBy('id','DESC')->first();
-                $studentId = $student->id;
-                $studentId = $studentId +1;
-    			$getId = $studentId;
-                if($getId == NULL)
-                {
-                    $number = $getId+1;
-                    if($number <0)
-                    {
-                        $id_no = $checkYear.'000'.$id_no;
-                    }
+                if($student == NULL){
+                    
+                    $student = User::orderBy('id','DESC')->first();
+                    $id_no = $student->id;
+                    $id_no = $id_no+1;
                 }
                 else{
-                     $id_no = $getId;
+                    $id_no = $student->id;
+                    $id_no = $id_no+1;
+                }
+                
                     if($id_no <0)
                     {
                         $id_no = $checkYear.'000'.$id_no;
@@ -55,8 +52,8 @@ class StudentManageController extends Controller
                     else{
                         $id_no = $checkYear.'0'.$id_no;
                     }
-                }
-                
+               
+
             $code = rand(0000,9999);   
             $user = new User();
             $user->id_no = $id_no;
