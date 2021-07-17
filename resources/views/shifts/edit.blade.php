@@ -27,13 +27,13 @@
               <div class="card-body">
                 <h5 class="card-title">shift Class</h5>
                 <br>
-                <form action="{{route('shifts.update',$s_class->id)}}" method="POST">
+                <form action="{{route('shifts.update',$shift->id)}}" method="POST">
                   @csrf
                   @method('PUT')
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">shift Name</label>
-                    <input type="text" name="name" class="form-control" id="name" placeholder="Enter shift name" value="{{$s_class->name}}">
+                    <input type="text" name="name" class="form-control" id="name" placeholder="Enter shift name" value="{{$shift->name}}">
                     @if($errors->has('name'))
                     <span class="text-danger">{{$errors->first('name')}}</span>
                     @endif

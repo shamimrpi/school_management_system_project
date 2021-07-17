@@ -136,9 +136,9 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('classes.index')}}" class="nav-link">
+                <a href="{{route('student.create')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Classes</p>
+                  <p>student</p>
                 </a>
               </li>
               

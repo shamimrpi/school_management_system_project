@@ -15,6 +15,7 @@ use App\Http\Controllers\AsignSubjectsCommonController;
 use App\Http\Controllers\DesignationsController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\Login\LoginController;
+use App\Http\Controllers\StudentManageController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -86,7 +87,15 @@ Route::prefix('admin')->group(function(){
 
 
 	
+
+	
 	});
+	
+	// Student Manage Controller 
+	Route::get('/student/create',[StudentManageController::class,'create'])->name('student.create');
+	Route::post('/student/store',[StudentManageController::class,'store'])->name('students.store');
+	Route::get('/student/{id}/edit',[StudentManageController::class,'create'])->name('students.edit');
+	Route::put('/student/{id}/update',[StudentManageController::class,'create'])->name('students.update');
 
 	// users Controller route
 	Route::get('/users/create',[UsersController::class,'create'])->name('users.create');

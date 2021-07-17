@@ -22,6 +22,21 @@
 <!-- sweet alert -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+     // image show javascript
+     $("#imgload").change(function () {
+        if (this.files && this.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#showImage').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(this.files[0]);
+        }
+    });
+  });
+</script>
 <script type="text/javascript">
   $(document).ready(function(){
     $("#myForm").validate({
@@ -103,10 +118,12 @@
           $(this).closest("#delete_whole_extra_item_add").remove();
             counter-=1;
         });
-
+      
+      
          
   });
 </script>
+
 
  
 
