@@ -16,6 +16,22 @@ use Illuminate\Support\Facades\Hash;
 class StudentManageController extends Controller
 {
     //
+    public function index(){
+        $data['years'] = Year::orderBy('id','DESC')->get();
+        $data['classes'] = Student_class::all();
+        $data['year_id'] = Year::orderBy('id','DESC')->first()->id;
+        $data['student_class_id'] = Student_class::orderBy('id','ASC')->first()->id;
+        $data['a_students'] = AssignStudent::where('year_id',$data['year_id'])->where('student_class_id',$data['student_class_id'])->get();
+        return view('students.index',$data);
+    }
+    public function getData(Request $r){
+        $data['years'] = Year::orderBy('id','DESC')->get();
+        $data['classes'] = Student_class::all();
+        $data['year_id'] = $r->year_id;
+        $data['student_class_id'] = $r->student_class_id;
+        $data['a_students'] = AssignStudent::where('year_id',$r->year_id)->where('student_class_id',$r->student_class_id)->get();
+        return view('students.index',$data);
+    }
 
     public function create()
     {
@@ -107,4 +123,5 @@ class StudentManageController extends Controller
     {
 
     }
+
 }
