@@ -25,7 +25,8 @@
 
             <div class="card card-primary card-outline">
               <div class="card-body">
-                <h5 class="card-title">@if(isset($editData)) Edit Fee Category @else Fee Category Create @endif</h5>
+                <h5 class="card-title">Create Student</h5>
+                <a class="btn btn-info btn-sm float-sm-right" href="{{route('student.all')}}">Student list</a>
                 <br>
                 <form action="{{(@$edit_data)?route('students.update',$student->id):route('students.store')}}" method="POST" enctype="multipart/form-data">
                   @csrf

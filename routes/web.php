@@ -96,8 +96,14 @@ Route::prefix('admin')->group(function(){
 	Route::get('/student/create',[StudentManageController::class,'create'])->name('student.create');
 	Route::post('/student/store',[StudentManageController::class,'store'])->name('students.store');
 	Route::get('/student/{student_id}/edit',[StudentManageController::class,'edit'])->name('student.edit');
+	Route::put('/student/{student_id}/update',[StudentManageController::class,'update'])->name('student.update');
 	Route::get('/student/class/year/wise',[StudentManageController::class,'getData'])->name('students.year.class.wise');
 	Route::get('/student/{student_id}/show',[StudentManageController::class,'show'])->name('student.details');
+
+	Route::get('/student/{student_id}/promotion',[StudentManageController::class,'promotion'])->name('student.promotion');
+
+	Route::post('/student/{student_id}/promotion/update',[StudentManageController::class,'promotionStore'])->name('student.promotion.store');
+
 	// users Controller route
 	Route::get('/users/create',[UsersController::class,'create'])->name('users.create');
 	Route::post('/users/store',[UsersController::class,'store'])->name('users.store');

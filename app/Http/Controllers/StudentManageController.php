@@ -177,5 +177,52 @@ class StudentManageController extends Controller
     public function show(Request $r,$student_id){
         return $r->all();
     }
+    public function promotion($student_id)
+    {
+        $data['religions'] = Religion::all();
+        $data['genders']  =  Gender::all();
+        $data['years']    = Year::all();
+        $data['classes']  = Student_class::all();
+        $data['groups']   = Group::all();
+        $data['shifts']   = Shift::all();
+        $data['a_student'] = AssignStudent::with(['student','discount'])->where('student_id',$student_id)->first();
+        /*dd($data['student']->toArray());*/
+        return view('students.promotion',$data);
+    }
+    public function promotionStore(Request $r,$student_id)
+    {       
+            $user = User::where('id',$student_id)->first();
+            $user->name = $r->name;
+            $user->f_name = $r->f_name;
+            $user->m_name = $r->m_name;
+            $user->mobile = $r->mobile;
+            $user->gender_id = $r->gender_id;
+            $user->address = $r->address;
+            $user->religion_id = $r->religion;
+            $user->dob = $r->dob;
+            
+             if($r->file('image')){
+                $file = $r->file('image');
+                $fileName = rand(0000,9999).$file->getClientOriginalName();
+                $file->move(public_path('upload/studentImage'),$fileName);
+                $user['image'] = $fileName;
+            }
+            $user->save();
+            $a_student = new AssignStudent();
+            $a_student->student_id = $student_id;
+            $a_student->year_id = $r->year_id;
+            $a_student->group_id = $r->group_id;
+            $a_student->shift_id = $r->shift_id;
+            $a_student->student_class_id = $r->student_class_id;
+            $a_student->save();
 
+            $d_student = new DiscountStudent();
+            $d_student->assign_student_id = $a_student->id;
+            $d_student->discount = $r->discount;
+            $d_student->fee_category_id = 1;
+            $d_student->save();
+             flash('student promotion successfully')->success();
+             return back();
+        
+    }
 }

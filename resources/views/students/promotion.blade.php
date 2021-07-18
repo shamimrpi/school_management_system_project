@@ -25,13 +25,12 @@
 
             <div class="card card-primary card-outline">
               <div class="card-body">
-                <h5 class="card-title">Edit Student Information</h5>
+                <h5 class="card-title">Promotion Student Information</h5>
                 <a class="btn btn-info btn-sm float-sm-right" href="{{route('student.all')}}">Student list</a>
                 <br>
-                <form action="{{route('student.update',$a_student->student_id)}}" method="POST" enctype="multipart/form-data">
+                <form action="{{route('student.promotion.store',$a_student->student_id)}}" method="POST" enctype="multipart/form-data">
                   @csrf
                 
-                    @method('PUT')
                  
 
                 <div class="card-body">

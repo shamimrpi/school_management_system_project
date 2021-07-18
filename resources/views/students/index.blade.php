@@ -35,7 +35,7 @@
                                <select class="form-control form-control-sm" name="student_class_id" required="1">
                                   <option value="">Select Class</option>
                                   @foreach($classes as $class)
-                                    <option value="{{$class->id}}" {{(@student_class_id == $class->id)?"selected":""}}>{{$class->name}}</option>
+                                    <option value="{{$class->id}}" {{(@$student_class_id == $class->id)?"selected":""}}>{{$class->name}}</option>
                                   @endforeach
                                 </select>
                                 @if($errors->has('student_class_id'))
@@ -49,7 +49,7 @@
                             <select class="form-control form-control-sm" name="year_id" required="">
                               <option value="" >Select Year</option>
                               @foreach($years as $year)
-                                <option value="{{$year->id}}" {{(@year_id == $year->id)?"selected":""}}>{{$year->name}}</option>
+                                <option value="{{$year->id}}" {{(@$year_id == $year->id)?"selected":""}}>{{$year->name}}</option>
                               @endforeach
                             </select>
                             @if($errors->has('name'))
@@ -103,6 +103,7 @@
                             <td>
                               <a class="btn btn-info fa fa-edit btn-sm" href="{{route('student.edit',$data->student_id)}}"></a>
                               <a class="btn btn-info fa fa-eye btn-sm" href="{{route('student.details',$data->student_id)}}"></a>
+                              <a class="btn btn-info fa fa-check btn-sm" href="{{route('student.promotion',$data->student_id)}}"></a>
                             </td>
                           </tr>
                           @endforeach
@@ -153,6 +154,7 @@
                             <td>
                               <a class="btn btn-info fa fa-edit" href="{{route('student.edit',$data->student_id)}}"></a>
                               <a class="btn btn-info fa fa-eye" href="{{route('student.details',$data->student_id)}}"></a>
+                               <a class="btn btn-info fa fa-check btn-sm" href="{{route('student.promotion',$data->student_id)}}"></a>
                             </td>
                           </tr>
                           @endforeach
