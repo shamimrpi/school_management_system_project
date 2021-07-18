@@ -101,7 +101,8 @@
                             <td>{{$data->studentClass->name}}</td>
 
                             <td>
-                              <a class="btn btn-info fa fa-edit" href="{{route('users.edit',$data->id)}}">
+                              <a class="btn btn-info fa fa-edit btn-sm" href="{{route('student.edit',$data->student_id)}}"></a>
+                              <a class="btn btn-info fa fa-eye btn-sm" href="{{route('student.details',$data->student_id)}}"></a>
                             </td>
                           </tr>
                           @endforeach
@@ -150,7 +151,8 @@
                             <td>{{$data->studentClass->name}}</td>
 
                             <td>
-                              <a class="btn btn-info fa fa-edit" href="{{route('users.edit',$data->id)}}">
+                              <a class="btn btn-info fa fa-edit" href="{{route('student.edit',$data->student_id)}}"></a>
+                              <a class="btn btn-info fa fa-eye" href="{{route('student.details',$data->student_id)}}"></a>
                             </td>
                           </tr>
                           @endforeach

@@ -10,6 +10,8 @@ use App\Models\Shift;
 use App\Models\AssignStudent;
 use App\Models\DiscountStudent;
 use App\Models\User;
+use App\Models\Religion;
+use App\Models\Gender;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -35,11 +37,26 @@ class StudentManageController extends Controller
 
     public function create()
     {
+        $data['religions'] = Religion::all();
+        $data['genders'] = Gender::all();
     	$data['years'] = Year::all();
     	$data['classes'] = Student_class::all();
     	$data['groups'] = Group::all();
     	$data['shifts'] = Shift::all();
-    	return view('students.create_edit',$data);
+
+    	return view('students.create',$data);
+    }
+    public function edit(Request $r,$student_id)
+    {   
+        $data['religions'] = Religion::all();
+        $data['genders'] = Gender::all();
+        $data['years']    = Year::all();
+        $data['classes']  = Student_class::all();
+        $data['groups']   = Group::all();
+        $data['shifts']   = Shift::all();
+        $data['a_student'] = AssignStudent::with(['student','discount'])->where('student_id',$student_id)->first();
+        /*dd($data['student']->toArray());*/
+        return view('students.edit',$data);
     }
     public function store(Request $r)
     {
@@ -80,10 +97,10 @@ class StudentManageController extends Controller
             $user->m_name = $r->m_name;
             $user->usertype = 'student';
             $user->mobile = $r->mobile;
-            $user->gender = $r->gender;
+            $user->gender_id = $r->gender_id;
             $user->address = $r->address;
-            $user->religion = $r->religion;
-            $user->religion = $r->religion;
+            $user->religion_id = $r->religion_id;
+           
             $user->dob = date('Y-m-d',strtotime($r->dob));
             if($r->file('image')){
                 $file = $r->file('image');
@@ -115,13 +132,50 @@ class StudentManageController extends Controller
 
     }
 
-    public function edit(Request $re,$id)
+   
+    public function update(Request $r,$student_id)
     {
+       
+         $user = User::where('id',$student_id)->first();
+           
+            $user->name = $r->name;
+            $user->f_name = $r->f_name;
+            $user->m_name = $r->m_name;
+            $user->mobile = $r->mobile;
+            $user->gender_id = $r->gender_id;
+            $user->address = $r->address;
+            $user->religion_id = $r->religion;
+            $user->dob = $r->dob;
+            
+             if($r->file('image')){
+                $file = $r->file('image');
+                $fileName = rand(0000,9999).$file->getClientOriginalName();
+                $file->move(public_path('upload/studentImage'),$fileName);
+                $user['image'] = $fileName;
+            }
+            $user->save();
+            $a_student = AssignStudent::where('student_id',$user->id)->first();
+            $a_student->year_id = $r->year_id;
+            $a_student->group_id = $r->group_id;
+            $a_student->shift_id = $r->shift_id;
+            $a_student->student_class_id = $r->student_class_id;
+            $a_student->save();
+
+            $d_student = DiscountStudent::where('assign_student_id',$a_student->id)->first();
+            $d_student->discount = $r->discount;
+            $d_student->fee_category_id = 1;
+            $d_student->save();
+             flash('student information updated successfully')->success();
+       
+        
+             return back();
+        
+
 
     }
-    public function update(Request $r,$id)
-    {
 
+    public function show(Request $r,$student_id){
+        return $r->all();
     }
 
 }

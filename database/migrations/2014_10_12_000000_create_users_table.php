@@ -22,11 +22,11 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('mobile')->nullable();
             $table->string('address')->nullable();
-            $table->string('gender')->nullable();
+            $table->integer('gender_id')->nullable();
             $table->string('image')->nullable();
             $table->string('f_name')->nullable();
             $table->string('m_name')->nullable();
-            $table->string('religion')->nullable();
+            $table->integer('religion_id')->nullable();
             $table->string('id_no')->nullable();
             $table->date('dob')->nullable();
             $table->string('code')->nullable();
