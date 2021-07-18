@@ -14,6 +14,7 @@ use App\Models\Religion;
 use App\Models\Gender;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use PDF;
 
 class StudentManageController extends Controller
 {
@@ -175,7 +176,11 @@ class StudentManageController extends Controller
     }
 
     public function show(Request $r,$student_id){
-        return $r->all();
+        $data['all_data'] = $data['a_student'] = AssignStudent::with(['student','discount'])->where('student_id',$student_id)->first();
+        return view('students.details',$data);
+        $pdf = PDF::LoadView('students.details',$data);
+      
+        return $pdf->download('laratutorials.pdf');
     }
     public function promotion($student_id)
     {

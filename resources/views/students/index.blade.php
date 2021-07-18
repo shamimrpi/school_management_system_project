@@ -102,7 +102,7 @@
 
                             <td>
                               <a class="btn btn-info fa fa-edit btn-sm" href="{{route('student.edit',$data->student_id)}}"></a>
-                              <a class="btn btn-info fa fa-eye btn-sm" href="{{route('student.details',$data->student_id)}}"></a>
+                              <a target="_blank" class="btn btn-info fa fa-eye btn-sm" href="{{route('student.details',$data->student_id)}}"></a>
                               <a class="btn btn-info fa fa-check btn-sm" href="{{route('student.promotion',$data->student_id)}}"></a>
                             </td>
                           </tr>
@@ -153,7 +153,7 @@
 
                             <td>
                               <a class="btn btn-info fa fa-edit" href="{{route('student.edit',$data->student_id)}}"></a>
-                              <a class="btn btn-info fa fa-eye" href="{{route('student.details',$data->student_id)}}"></a>
+                              <a target="_blank" class="btn btn-info fa fa-eye btn-sm" href="{{route('student.details',$data->student_id)}}"></a>
                                <a class="btn btn-info fa fa-check btn-sm" href="{{route('student.promotion',$data->student_id)}}"></a>
                             </td>
                           </tr>

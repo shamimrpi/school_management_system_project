@@ -32,7 +32,7 @@ class LoginController extends Controller
     {
     	Auth::logout();
 
-    	return redirect()->to('/login');
+    	return redirect()->to('/');
     }
 
     public function dashboard()

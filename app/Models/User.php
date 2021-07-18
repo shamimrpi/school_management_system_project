@@ -54,5 +54,14 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+     public function gender(){
+         return $this->belongsTo(Gender::class,'gender_id','id');
+      }
+
+      public function religion(){
+         return $this->belongsTo(Religion::class,'religion_id','id');
+      }
+     
     
 }
