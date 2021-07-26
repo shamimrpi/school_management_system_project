@@ -20,7 +20,8 @@
 <script src="{{asset('admin')}}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="{{asset('admin')}}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <!-- sweet alert -->
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="{{asset('js')}}/sweetalert.min.js"></script>
+<script src="{{asset('js')}}/notify.js"></script>
 <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
 
 <script type="text/javascript">
@@ -62,9 +63,34 @@
           hightlight:function(element,errorClass,validClass){
             element:addClass('is-invalid')
           }
-          unhightlight:function(element,errorClass,validClass){
-            element:removeClass('is-invalid')
+          
+
+         });
+  })
+</script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#myRollGenerateForm").validate({
+          rules:{
+            "roll[]":{
+              required: true
+          
+          },
+          messages:{
+
+          },
+          errorElement:'span',
+          errorPlacement:function(error,element){
+            error:addClass('invalid-feedback');
+            element:closest('.form-group').append(errpr);
+          },
+          highlight:function(element,errorClass,validClass){
+            element:addClass('is-invalid')
           }
+           unhighlight:function(element,errorClass,validClass){
+            element:addClass('is-invalid')
+          }
+          
 
          });
   })
@@ -125,6 +151,43 @@
 </script>
 
 
+<script type="text/javascript">
+
+  $(document).on("click","#search",function(){
+    var year_id = $("#year_id").val();
+    var student_class_id = $("#student_class_id").val();
+    if(year_id == ''){
+      $.notify("Year Required",{golbalPosition:'top right',className:'error'});
+      return false;
+    }
+    if(student_class_id == ''){
+      $.notify("Class Required",{golbalPosition:'top right',className:'error'});
+      return false;
+    }
+  
+    $.ajax({
+        url:"{{route('student.roll.gen.get_student')}}",
+        type: "GET",
+        data:{'year_id':year_id,'student_class_id':student_class_id},
+        success:function(data){
+          $('#roll-generat').removeClass('d-none');
+          var html = '';
+          $.each(data, function(key, v){
+            html +=
+            '<tr>'+
+            '<td>'+v.student.id_no+'<input type="hidden" name="student_id[]" value="'+v.student.id+'" <td>'+
+            '<td>'+v.student.name+'</td>'+
+            '<td>'+v.student.f_name+'</td>'+
+            '<td><input type="number" required="" name="roll[]" class="form-controll sm-form-controll" value="'+v.roll+'" <td>'+
+            '</tr>';
+          });
+            html = $('#roll-generate-tr').html(html);
+        }
+    });
+
+
+  });
+</script>
  
 
 @stack('scripts')

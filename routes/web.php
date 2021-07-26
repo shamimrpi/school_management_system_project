@@ -16,6 +16,7 @@ use App\Http\Controllers\DesignationsController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\Login\LoginController;
 use App\Http\Controllers\StudentManageController;
+use App\Http\Controllers\StudentRollGenController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -113,6 +114,9 @@ Route::prefix('admin')->group(function(){
 	Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 	Route::get('/dashboard',[LoginController::class,'dashboard'])->name('dashboard');
 
+	Route::get('/student_roll',[StudentRollGenController::class,'index'])->name('student.roll.gen');
+	Route::post('/student_roll/store',[StudentRollGenController::class,'store'])->name('student.roll.gen.store');
+	Route::get('/student_roll/get_student',[StudentRollGenController::class,'getStudent'])->name('student.roll.gen.get_student');
 });	
 
 

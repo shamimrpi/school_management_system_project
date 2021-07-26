@@ -141,6 +141,12 @@
                   <p>student</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{route('student.roll.gen')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Student Roll Generate</p>
+                </a>
+              </li>
               
 
                
