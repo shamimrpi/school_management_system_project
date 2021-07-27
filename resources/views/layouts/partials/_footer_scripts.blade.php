@@ -223,4 +223,84 @@
   });
  </script>
 
+  <script type="text/javascript">
+   // Monthly fee javascript
+   $(document).on("click","#month_search",function(){
+    var year_id = $("#year_id").val();
+    var student_class_id = $("#student_class_id").val();
+    var month = $("#month").val();
+    if(year_id == ''){
+      $.notify("Year Required",{golbalPosition:'top right',className:'error'});
+      return false;
+    }
+    if(student_class_id == ''){
+      $.notify("Class Required",{golbalPosition:'top right',className:'error'});
+      return false;
+    }
+    if(month == ''){
+      $.notify("Month Required",{golbalPosition:'top right',className:'error'});
+      return false;
+    }
+  
+    $.ajax({
+        url:"{{route('student.monthly.fee.getStudent')}}",
+        type: "GET",
+        data:{'year_id':year_id,'student_class_id':student_class_id,'month':month},
+        beforeSend:function(data){
+
+        },
+        success:function(data){
+          var source = $("#document-template").html();
+          var template = Handlebars.compile(source);
+          var html = template(data);
+          $("#DocumentResults").html(html);
+          $('[data-toggle="tooltip"]').tooltip();
+        }
+    });
+
+
+  });
+ </script>
+
+
+  <script type="text/javascript">
+   // Exam fee javascript
+   $(document).on("click","#exam_search",function(){
+    var year_id = $("#year_id").val();
+    var student_class_id = $("#student_class_id").val();
+    var exam_type_id = $("#exam_type_id").val();
+    if(year_id == ''){
+      $.notify("Year Required",{golbalPosition:'top right',className:'error'});
+      return false;
+    }
+    if(student_class_id == ''){
+      $.notify("Class Required",{golbalPosition:'top right',className:'error'});
+      return false;
+    }
+    if(exam_type_id == ''){
+      $.notify("Exam Type Required",{golbalPosition:'top right',className:'error'});
+      return false;
+    }
+  
+    $.ajax({
+        url:"{{route('student.exam.fee.getStudent')}}",
+        type: "GET",
+        data:{'year_id':year_id,'student_class_id':student_class_id,'exam_type_id':exam_type_id},
+        beforeSend:function(data){
+
+        },
+        success:function(data){
+          var source = $("#document-template").html();
+          var template = Handlebars.compile(source);
+          var html = template(data);
+          $("#DocumentResults").html(html);
+          $('[data-toggle="tooltip"]').tooltip();
+        }
+    });
+
+
+  });
+ </script>
+
+
 @stack('scripts')

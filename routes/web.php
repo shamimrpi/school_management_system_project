@@ -18,8 +18,8 @@ use App\Http\Controllers\Login\LoginController;
 use App\Http\Controllers\StudentManageController;
 use App\Http\Controllers\StudentRollGenController;
 use App\Http\Controllers\StudentRegFeeController;
-
-
+use App\Http\Controllers\StudentMonthlyFeeController;
+use App\Http\Controllers\ExamFeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -121,11 +121,20 @@ Route::prefix('admin')->group(function(){
 	Route::get('/student_roll',[StudentRollGenController::class,'index'])->name('student.roll.gen');
 	Route::post('/student_roll/store',[StudentRollGenController::class,'store'])->name('student.roll.gen.store');
 	Route::get('/student_roll/get_student',[StudentRollGenController::class,'getStudent'])->name('student.roll.gen.get_student');
-
+	// registration fee controllers
 	Route::get('/student/reg/fee',[StudentRegFeeController::class,'index'])->name('student.reg.fee');
 	Route::get('/student/reg/fee/getstudent',[StudentRegFeeController::class,'getStudent'])->name('student.reg.fee.getStudent');
-	Route::post('/student/reg/fee/store',[StudentRegFeeController::class,'store'])->name('student.reg.fee.store');
 	Route::get('/student/registration/fee',[StudentRegFeeController::class,'paySlip'])->name('student.reg.fee.slip');
+
+		// Monthly fee controllers
+	Route::get('/monthly/fee',[StudentMonthlyFeeController::class,'index'])->name('student.monthly.fee.view');
+	Route::get('/monthly/fee/getstudent',[StudentMonthlyFeeController::class,'getStudent'])->name('student.monthly.fee.getStudent');
+	Route::get('/monthly/fee/pdf',[StudentMonthlyFeeController::class,'paySlip'])->name('student.monthly.fee.slip');
+
+		// Exam fee controllers
+	Route::get('/exam/fee',[ExamFeeController::class,'index'])->name('student.exam.fee.view');
+	Route::get('/exam/fee/getstudent',[ExamFeeController::class,'getStudent'])->name('student.exam.fee.getStudent');
+	Route::get('/exam/fee/pdf',[ExamFeeController::class,'paySlip'])->name('student.exam.fee.slip');
 });	
 
 

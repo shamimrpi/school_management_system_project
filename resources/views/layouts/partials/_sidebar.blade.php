@@ -100,6 +100,13 @@
                 </a>
               </li>
 
+                <li class="nav-item">
+                <a href="{{route('examtypes.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Exam Type</p>
+                </a>
+              </li>
+
               <li class="nav-item">
                 <a href="{{route('subjects.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -138,7 +145,7 @@
               <li class="nav-item">
                 <a href="{{route('student.all')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>student</p>
+                  <p>Student Registration</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -151,9 +158,24 @@
                <li class="nav-item">
                 <a href="{{route('student.reg.fee')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Student Registration Fee</p>
+                  <p>Registration Fee</p>
                 </a>
               </li>
+
+              <li class="nav-item">
+                <a href="{{route('student.monthly.fee.view')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Monthly Fee</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{route('student.exam.fee.view')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Exam Fee</p>
+                </a>
+              </li>
+         
               
 
                

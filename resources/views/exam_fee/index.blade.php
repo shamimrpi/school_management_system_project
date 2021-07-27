@@ -5,7 +5,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Student Manage</h1>
+            <h1 class="m-0">Student Monthly Fee Manage</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -26,10 +26,10 @@
             <div class="card card-primary card-outline">
               <div class="card-body">
 
-                <div class="card-body">
+             
                     
                       <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="form-group">
                                <label for="exampleInputEmail1">Class <span style="color:red">*</span></label>
                                <select class="form-control form-control-sm" id="student_class_id" name="student_class_id" required="1">
@@ -43,7 +43,7 @@
                                 @endif
                               </div>
                           </div>
-                         <div class="col-md-4">
+                         <div class="col-md-3">
                           <div class="form-group">
                            <label for="year_id">Select Year <span style="color:red">*</span></label>
                             <select class="form-control form-control-sm" id="year_id" name="year_id" required="">
@@ -57,8 +57,23 @@
                             @endif
                           </div>
                         </div>
-                        <div class="col-md-4">
-                          <a id="roll_reg_search" name="search" class="btn btn-info btn-sm" style="margin-top: 30px">Search</a>
+
+                        <div class="col-md-3">
+                          <div class="form-group">
+                           <label for="year_id"> Exam Type <span style="color:red">*</span></label>
+                            <select class="form-control form-control-sm" id="exam_type_id" name="exam_type_id" required="">
+                              <option value="" >Select Exam Type</option>
+                              @foreach($exams as $exam)
+                                <option value="{{$exam->id}}" >{{$exam->name}}</option>
+                              @endforeach
+                            </select>
+                            @if($errors->has('name'))
+                            <span class="text-danger">{{$errors->first('name')}}</span>
+                            @endif
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <a id="exam_search" name="exam_search" class="btn btn-info btn-sm" style="margin-top: 30px">Search</a>
                         </div>
                    
 
@@ -66,7 +81,7 @@
                       </div>
                   
 
-                 
+            
                 </div>
          
                 <br><br>
