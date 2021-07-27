@@ -22,6 +22,7 @@
 <!-- sweet alert -->
 <script src="{{asset('js')}}/sweetalert.min.js"></script>
 <script src="{{asset('js')}}/notify.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.min.js"></script>
 <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
 
 <script type="text/javascript">
@@ -188,6 +189,38 @@
 
   });
 </script>
- 
+ <script type="text/javascript">
+   // registration fee javascript
+   $(document).on("click","#roll_reg_search",function(){
+    var year_id = $("#year_id").val();
+    var student_class_id = $("#student_class_id").val();
+    if(year_id == ''){
+      $.notify("Year Required",{golbalPosition:'top right',className:'error'});
+      return false;
+    }
+    if(student_class_id == ''){
+      $.notify("Class Required",{golbalPosition:'top right',className:'error'});
+      return false;
+    }
+  
+    $.ajax({
+        url:"{{route('student.reg.fee.getStudent')}}",
+        type: "GET",
+        data:{'year_id':year_id,'student_class_id':student_class_id},
+        beforeSend:function(data){
+
+        },
+        success:function(data){
+          var source = $("#document-template").html();
+          var template = Handlebars.compile(source);
+          var html = template(data);
+          $("#DocumentResults").html(html);
+          $('[data-toggle="tooltip"]').tooltip();
+        }
+    });
+
+
+  });
+ </script>
 
 @stack('scripts')

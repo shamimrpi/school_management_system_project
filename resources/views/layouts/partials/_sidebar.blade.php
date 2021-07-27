@@ -147,6 +147,13 @@
                   <p>Student Roll Generate</p>
                 </a>
               </li>
+
+               <li class="nav-item">
+                <a href="{{route('student.reg.fee')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Student Registration Fee</p>
+                </a>
+              </li>
               
 
                
@@ -173,6 +180,8 @@
               </p>
             </a>
           </li>
+
+
          
         </ul>
       </nav>

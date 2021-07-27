@@ -14,7 +14,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <!-- Main Sidebar Container -->
  @include('layouts.partials._sidebar')
-  @include('layouts.partials._navbar')
+ @include('layouts.partials._navbar')
 
 
   <!-- Content Wrapper. Contains page content -->
