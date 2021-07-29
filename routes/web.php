@@ -20,6 +20,7 @@ use App\Http\Controllers\StudentRollGenController;
 use App\Http\Controllers\StudentRegFeeController;
 use App\Http\Controllers\StudentMonthlyFeeController;
 use App\Http\Controllers\ExamFeeController;
+use App\Http\Controllers\EmployeesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -135,6 +136,17 @@ Route::prefix('admin')->group(function(){
 	Route::get('/exam/fee',[ExamFeeController::class,'index'])->name('student.exam.fee.view');
 	Route::get('/exam/fee/getstudent',[ExamFeeController::class,'getStudent'])->name('student.exam.fee.getStudent');
 	Route::get('/exam/fee/pdf',[ExamFeeController::class,'paySlip'])->name('student.exam.fee.slip');
+
+Route::prefix('employee')->group(function(){
+
+	Route::get('/reg/view',[EmployeesController::class,'index'])->name('emaployee.all');
+	Route::get('/employee/create',[EmployeesController::class,'create'])->name('employee.create');
+	Route::post('/employee/store',[EmployeesController::class,'store'])->name('employee.store');
+	Route::get('/employee/{id}/edit',[EmployeesController::class,'edit'])->name('employee.edit');
+	Route::put('/employee/{id}/update',[EmployeesController::class,'update'])->name('employee.update');
+	Route::get('/employee/{student_id}/details',[EmployeesController::class,'details'])->name('employee.details');
+
+	});
 });	
 
 

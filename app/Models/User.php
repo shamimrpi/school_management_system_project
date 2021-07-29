@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Designation;
 
 class User extends Authenticatable
 {
@@ -59,9 +60,12 @@ class User extends Authenticatable
          return $this->belongsTo(Gender::class,'gender_id','id');
       }
 
+     
       public function religion(){
          return $this->belongsTo(Religion::class,'religion_id','id');
       }
-     
+       public function designation(){
+         return $this->belongsTo(Designation::class,'designation_id','id');
+      }
     
 }

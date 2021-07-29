@@ -29,9 +29,11 @@ class CreateUsersTable extends Migration
             $table->integer('religion_id')->nullable();
             $table->string('id_no')->nullable();
             $table->date('dob')->nullable();
+            $table->date('join_date')->nullable();
             $table->string('code')->nullable();
             $table->string('role')->nullable()->comment('admin=head of software,operator=computer operator,user=emplyee');
             $table->double('salary')->nullable();
+            $table->double('designation_id')->nullable();
             $table->tinyInteger('status')->nullable()->comment('0=inactive,1=active');
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
