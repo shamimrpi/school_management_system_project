@@ -22,6 +22,7 @@ use App\Http\Controllers\StudentMonthlyFeeController;
 use App\Http\Controllers\ExamFeeController;
 use App\Http\Controllers\EmployeesController;
 use App\Http\Controllers\EmployeeSalaryController;
+use App\Http\Controllers\EmployeeLeaveController;
 
 
 /*
@@ -153,6 +154,14 @@ Route::prefix('employee')->group(function(){
 	Route::get('/salary/{id}/increment',[EmployeeSalaryController::class,'increment'])->name('employee.salary.increment');
 	Route::put('/salary/{id}/store',[EmployeeSalaryController::class,'store'])->name('employee.salary.store');
 	Route::get('/salary/{id}/details',[EmployeeSalaryController::class,'details'])->name('salary.details');
+
+		// Employee Leave 
+	Route::get('/employee/leave/view',[EmployeeLeaveController::class,'index'])->name('emaployee.leave');
+	Route::get('/employee/leave/create',[EmployeeLeaveController::class,'create'])->name('emaployee.leave.create');
+	Route::post('/employee/leave/store',[EmployeeLeaveController::class,'store'])->name('emaployee.leave.store');
+	Route::get('/employee/leave/{id}/edit',[EmployeeLeaveController::class,'edit'])->name('emaployee.leave.edit');
+	Route::put('/employee/leave/{id}/update',[EmployeeLeaveController::class,'editStore'])->name('emaployee.leave.update');
+	Route::get('/leave/{id}/delete',[EmployeeLeaveController::class,'destroy'])->name('leave.delete');
 
 	});
 });	

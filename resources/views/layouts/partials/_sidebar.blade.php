@@ -40,7 +40,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('users')}}" class="nav-link">
+                <a href="{{route('users')}}" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Users</p>
                 </a>
@@ -203,6 +203,13 @@
                 <a href="{{route('emaployee.salary')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Empolyee Salary</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{route('emaployee.leave')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Empolyee Leave</p>
                 </a>
               </li>
              

@@ -67,5 +67,9 @@ class User extends Authenticatable
        public function designation(){
          return $this->belongsTo(Designation::class,'designation_id','id');
       }
+      public function leave()
+      {
+        return $this->belongsTo(EmployeeLeave::class,'employee_id','id');
+      }
     
 }
