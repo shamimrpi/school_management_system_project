@@ -21,6 +21,8 @@ use App\Http\Controllers\StudentRegFeeController;
 use App\Http\Controllers\StudentMonthlyFeeController;
 use App\Http\Controllers\ExamFeeController;
 use App\Http\Controllers\EmployeesController;
+use App\Http\Controllers\EmployeeSalaryController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -145,6 +147,12 @@ Route::prefix('employee')->group(function(){
 	Route::get('/employee/{id}/edit',[EmployeesController::class,'edit'])->name('employee.edit');
 	Route::put('/employee/{id}/update',[EmployeesController::class,'update'])->name('employee.update');
 	Route::get('/employee/{student_id}/details',[EmployeesController::class,'details'])->name('employee.details');
+
+	// Employee Salary 
+	Route::get('/employee/salary/view',[EmployeeSalaryController::class,'index'])->name('emaployee.salary');
+	Route::get('/salary/{id}/increment',[EmployeeSalaryController::class,'increment'])->name('employee.salary.increment');
+	Route::put('/salary/{id}/store',[EmployeeSalaryController::class,'store'])->name('employee.salary.store');
+	Route::get('/salary/{id}/details',[EmployeeSalaryController::class,'details'])->name('salary.details');
 
 	});
 });	

@@ -40,13 +40,12 @@
                           <th>#SL</th>
                           <th>Name</th>
                           <th>Mobile</th>
-                          <th style="20px">Address</th>
+                        
                           <th>Gender</th>
                           <th>Join Date</th>
                           <th>Salary</th>
                           <th>ID No.</th>
-                          <th>Code</th>
-                          <th>Photo</th>
+                        
                           <th style="width:60px">Action</th>
                         </tr>
                       </thead>
@@ -57,27 +56,37 @@
                             <td>{{$key+1}}</td>
                             <td>{{$employee->name}}</td>
                             <td>{{$employee->mobile}}</td>
-                            <td>{{$employee->address}}</td>
+                           
                             <td>{{$employee->gender->name}}</td>
                             <td>{{$employee->join_date}}</td>
                             <td>{{$employee->salary}}</td>
                             <td>{{$employee->id_no}}</td>
-                            <td>{{$employee->code}}</td>
-                            <td>
-                              <img src="{{(!empty($employee->image))?url('upload/employee_img/'.$employee->image):''}}" style="height: 100px;width: 100px">
-                            </td>
+                          
                          
 
                             <td>
-                              <a class="btn btn-info fa fa-edit btn-sm" href="{{route('employee.edit',$employee->id)}}"></a>
-                              <a class="btn btn-info fa fa-eye btn-sm" href="{{route('employee.details',$employee->id)}}" target="_blank"></a>
+                              <a class="btn btn-info fa fa-plus btn-sm" title="Salary Encrement" href="{{route('employee.salary.increment',$employee->id)}}"></a>
+                              <a class="btn btn-info fa fa-eye btn-sm" href="{{route('salary.details',$employee->id)}}"></a>
                              
                             </td>
                           </tr>
                           @endforeach
                         @endif
                       </tbody>
-                   
+                      <tfoot>
+                        <tr>
+                          <th>#SL</th>
+                          <th>Name</th>
+                          <th>Mobile</th>
+                        
+                          <th>Gender</th>
+                          <th>Join Date</th>
+                          <th>Salary</th>
+                          <th>ID No.</th>
+                       
+                          <th>Action</th>
+                        </tr>
+                      </tfoot>
                   </table>
                 
                  
