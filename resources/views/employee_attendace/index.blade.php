@@ -27,7 +27,7 @@
               <div class="card-body">
 
               
-                <h5 class="card-title">Attendance List</h5>
+                <h5 class="card-title">Attendance Lists</h5>
                 <br><br>
 
                   <a href="{{route('emaployee.attendnace.create')}}" class="btn btn-info fa fa-plus float-sm-right"> Add Attendance</a>
