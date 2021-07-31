@@ -310,9 +310,13 @@
   //  monthly attendance javascript
   $(document).on("click","#month_attendance",function(){
     var employee_id = $("#employee_id").val();
-    var month = $("#month").val();
+    var date = $("#date").val();
     if(employee_id == ''){
       $.notify("Employee Required",{golbalPosition:'top right',className:'error'});
+      return false;
+    }
+     if(date == ''){
+      $.notify("Date Required",{golbalPosition:'top right',className:'error'});
       return false;
     }
    
@@ -321,7 +325,7 @@
     $.ajax({
         url:"{{route('monthly.attendance')}}",
         type: "GET",
-        data:{'employee_id':employee_id},
+        data:{'employee_id':employee_id,'date':date},
         success:function(data){
           $('#attendance-row').removeClass('d-none');
           var html = '';
@@ -337,6 +341,38 @@
             '</tr>';
           });
             html = $('#attendance_row').html(html);
+        }
+    });
+
+
+  });
+</script>
+
+<script type="text/javascript">
+  //  monthly Salary javascript
+  $(document).on("click","#montly_salary",function(){
+    var date = $("#date").val();
+   
+     if(date == ''){
+      $.notify("Date Required",{golbalPosition:'top right',className:'error'});
+      return false;
+    }
+   
+
+
+      $.ajax({
+        url:"{{route('monthly.salary.get')}}",
+        type: "GET",
+        data:{'date':date},
+        beforeSend:function(data){
+
+        },
+        success:function(data){
+          var source = $("#document-template").html();
+          var template = Handlebars.compile(source);
+          var html = template(data);
+          $("#DocumentResults").html(html);
+          $('[data-toggle="tooltip"]').tooltip();
         }
     });
 

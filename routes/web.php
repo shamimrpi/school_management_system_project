@@ -24,6 +24,7 @@ use App\Http\Controllers\EmployeesController;
 use App\Http\Controllers\EmployeeSalaryController;
 use App\Http\Controllers\EmployeeLeaveController;
 use App\Http\Controllers\EmployeeAttendanceController;
+use App\Http\Controllers\MonthlySalaryController;
 
 
 /*
@@ -174,6 +175,11 @@ Route::prefix('employee')->group(function(){
 	Route::get('/attendnaces/month',[EmployeeAttendanceController::class,'attendMonth'])->name('attendnace.month');
 	Route::get('/montyAttendance/',[EmployeeAttendanceController::class,'montlyAttendance'])->name('monthly.attendance');
 
+
+		// Employee Monthly Salary 
+	Route::get('/monthly/salary',[MonthlySalaryController::class,'index'])->name('montly.salary');
+	Route::get('/monthly/slaray/get',[MonthlySalaryController::class,'getSalary'])->name('monthly.salary.get');
+	Route::get('/salary/payslip/{employee_id}',[MonthlySalaryController::class,'paySlip'])->name('salary.payslip');
 	});
 });	
 

@@ -16,7 +16,7 @@ class EmployeeAttendanceController extends Controller
     public function index()
     {
 
-        $employees = EmployeeAttendance::select('date')->groupBy('date')->orderBy('date','asc')->get();
+        $employees = EmployeeAttendance::select('date')->groupBy('date')->orderBy('date','DESC')->get();
         return view('employee_attendace.index',compact('employees'));
     }
     public function create()
@@ -28,14 +28,16 @@ class EmployeeAttendanceController extends Controller
     }
     public function store(Request $r)
     {   
-         $attendances = EmployeeAttendance::where('date',$r->date)->get();
-       
 
-        if($attendances !=NULL){
-            flash('Data already exists')->error();
-            return redirect()->route('emaployee.attendnace');
-        }
-        else{
+         $attendances = EmployeeAttendance::where('date',$r->date)->get();
+         foreach ($attendances as $key => $attendance) {
+            
+            if($attendance->date == $r->date){
+                flash('date already inserted')->error();
+                    return redirect()->route('emaployee.attendnace');
+                }
+             }
+         
               $count = count($r->employee_id);
                 for ($i=0; $i < $count; $i++) { 
                     $attendance_status = 'attendance_status'.$i;
@@ -48,7 +50,7 @@ class EmployeeAttendanceController extends Controller
                 }
                  flash('Attendance inserted successfully')->success();
                     return redirect()->route('emaployee.attendnace');
-        }
+      
        
       
 
@@ -92,8 +94,12 @@ class EmployeeAttendanceController extends Controller
         return view('employee_attendace.attendance',$data);
     }
     public function montlyAttendance(Request $r){
+        $date = date('Y-m',strtotime($r->date));
+        if($date != ''){
+            $where[] = ['date','like',$date.'%'];
+        }
+        $attendance = EmployeeAttendance::with('user')->where('employee_id',$r->employee_id)->where($where)->orderby('date','ASC')->get();
         
-        $attendance = EmployeeAttendance::with('user')->where('employee_id',$r->employee_id)->orderby('date')->get();
       
         return response()->json(@$attendance);
 

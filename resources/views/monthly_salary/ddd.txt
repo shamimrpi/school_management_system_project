@@ -1,0 +1,14 @@
+	<?php
+		 $date = date('Y-m',strtotime($data['0']['date']));
+	       if($date != ''){
+	            $where[] = ['date','like',$date.'%'];
+	        }
+	       $attendance = \App\Models\EmployeeAttendance::with(['user'])->where($where)->where('employee_id',$attend->employee_id)->get();
+         
+           $absentCount = count($attendance->where('attendance_status','Absent'));
+
+		   $salary           = (float)$attend['user']['salary'];
+           $salaryPerday     = (float)$salary/30;
+           $totalSalaryMinus = $absentCount*(float)$salaryPerday;
+           $totalSalary      = (float)$salary-(float)$totalSalaryMinus;
+	?>

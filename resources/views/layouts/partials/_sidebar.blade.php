@@ -221,7 +221,13 @@
                <li class="nav-item">
                 <a href="{{route('attendnace.month')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Employee Wise Att:</p>
+                  <p>Monthly Attendance</p>
+                </a>
+              </li>
+                <li class="nav-item">
+                <a href="{{route('montly.salary')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Monthly Salary</p>
                 </a>
               </li>
              

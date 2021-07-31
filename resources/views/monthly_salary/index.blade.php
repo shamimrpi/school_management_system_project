@@ -31,20 +31,7 @@
                         @csrf
                     
                       <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                               <label for="exampleInputEmail1">Select Employee <span style="color:red">*</span></label>
-                               <select class="form-control form-control-sm" id="employee_id" name="employee_id" required="1">
-                                  <option value="">Select Employee</option>
-                                  @foreach($employees as $employee)
-                                    <option value="{{$employee->id}}" >{{$employee->name}}</option>
-                                  @endforeach
-                                </select>
-                                @if($errors->has('employee_id'))
-                                <span class="text-danger">{{$errors->first('employee_id')}}</span>
-                                @endif
-                              </div>
-                          </div>
+                       
                            <div class="col-md-4">
                              <div class="form-group">
                                <label for="exampleInputEmail1">Select Month <span style="color:red">*</span></label>
@@ -53,32 +40,37 @@
                           </div>
                       
                         <div class="col-md-4">
-                          <a id="month_attendance" name="search" class="btn btn-info btn-sm" style="margin-top: 30px">Search</a>
+                          <a id="montly_salary" name="search" class="btn btn-info btn-sm" style="margin-top: 30px">Search</a>
                         </div>
                    
 
                         
                       </div>
                    
-                      <div class="row d-none" id="attendance-row">
-                        <div class="col-md-12">
+                    
+                <br><br>
+                <div class="card-body">
+                  <div id="DocumentResults">
+                    
+                  </div>
 
-                          <table class="table table-bordered table-striped">
-                            <thead>
-                              <tr>
-                                <th>#SL</th>
-                                <th>Employee Name</th>
-                                <th>Date</th>
-                                 <th>Attendance Status</th>
-                              </tr>
-                            </thead>
-                            <tbody id="attendance_row">
-                              
-                            </tbody>
-                          </table>
-
-                        </div>
-                      </div>
+                  <script type="text/x-handlebars-template" id="document-template">
+                    <table class="table table-bordered table-striped" style="with:100%">
+                      <thead>
+                        <tr>
+                          @{{{thsource}}}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @{{#each this}}
+                        <tr>
+                          @{{{tdsource}}}
+                        </tr>
+                        @{{/each}}
+                      </tbody>
+                    </table>
+                  </script>
+                </div>
                   
                       
 
