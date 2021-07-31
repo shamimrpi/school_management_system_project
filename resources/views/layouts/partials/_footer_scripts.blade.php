@@ -306,4 +306,43 @@
  </script>
 
 
+<script type="text/javascript">
+  //  monthly attendance javascript
+  $(document).on("click","#month_attendance",function(){
+    var employee_id = $("#employee_id").val();
+    var month = $("#month").val();
+    if(employee_id == ''){
+      $.notify("Employee Required",{golbalPosition:'top right',className:'error'});
+      return false;
+    }
+   
+
+
+    $.ajax({
+        url:"{{route('monthly.attendance')}}",
+        type: "GET",
+        data:{'employee_id':employee_id},
+        success:function(data){
+          $('#attendance-row').removeClass('d-none');
+          var html = '';
+          $.each(data, function(key, v){
+            var key = key+1;
+            html +=
+            '<tr>'+
+              '<td>'+key+'</td>'+
+              '<td>'+v.user.name+'</td>'+
+              '<td>'+v.date+'</td>'+
+              '<td>'+v.attendance_status+'</td>'+
+              
+            '</tr>';
+          });
+            html = $('#attendance_row').html(html);
+        }
+    });
+
+
+  });
+</script>
+
+
 @stack('scripts')

@@ -61,6 +61,32 @@ class StudentManageController extends Controller
     }
     public function store(Request $r)
     {
+        $this->validate($r,[
+            'name' => 'required',
+            'password' => 'required',
+            'f_name' => 'required',
+            'm_name' => 'required',
+            'mobile' => 'required',
+            'gender_id' => 'required',
+            'address' => 'required',
+            'religion_id' => 'required',
+            'salary' => 'required',
+            'year_id' => 'required',
+            'dob' => 'required',
+           
+            'student_class_id' => 'required',
+            'discount' => 'required',
+            'image' => 'required',
+            ],
+                [
+                   'f_name.required' => 'Father name must be filled',
+                   'm_name.required' => 'Mother name must be filled',
+                   'gender_id.required' => 'Gender Must be Select',
+                   'religion_id.required' => 'Religion Must be Select',
+                   'year_id.required' => 'Year Must be Select',
+                   'student_class_id.required' => 'Class Must be Select',
+                   'dob.required' => 'Date of birth must be pickup',
+                    ]);
 
     			$checkYear = Year::find($r->year_id);
     			$checkYear = $checkYear->name;
@@ -135,7 +161,33 @@ class StudentManageController extends Controller
 
    
     public function update(Request $r,$student_id)
-    {
+    {   
+         $this->validate($r,[
+            'name' => 'required',
+            'password' => 'required',
+            'f_name' => 'required',
+            'm_name' => 'required',
+            'mobile' => 'required',
+            'gender_id' => 'required',
+            'address' => 'required',
+            'religion_id' => 'required',
+            'salary' => 'required',
+            'year_id' => 'required',
+            'dob' => 'required',
+           
+            'student_class_id' => 'required',
+            'discount' => 'required',
+            'image' => 'required',
+            ],
+                [
+                   'f_name.required' => 'Father name must be filled',
+                   'm_name.required' => 'Mother name must be filled',
+                   'gender_id.required' => 'Gender Must be Select',
+                   'religion_id.required' => 'Religion Must be Select',
+                   'year_id.required' => 'Year Must be Select',
+                   'student_class_id.required' => 'Class Must be Select',
+                   'dob.required' => 'Date of birth must be pickup',
+                    ]);
        
          $user = User::where('id',$student_id)->first();
            

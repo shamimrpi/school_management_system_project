@@ -23,6 +23,7 @@ use App\Http\Controllers\ExamFeeController;
 use App\Http\Controllers\EmployeesController;
 use App\Http\Controllers\EmployeeSalaryController;
 use App\Http\Controllers\EmployeeLeaveController;
+use App\Http\Controllers\EmployeeAttendanceController;
 
 
 /*
@@ -162,6 +163,16 @@ Route::prefix('employee')->group(function(){
 	Route::get('/employee/leave/{id}/edit',[EmployeeLeaveController::class,'edit'])->name('emaployee.leave.edit');
 	Route::put('/employee/leave/{id}/update',[EmployeeLeaveController::class,'editStore'])->name('emaployee.leave.update');
 	Route::get('/leave/{id}/delete',[EmployeeLeaveController::class,'destroy'])->name('leave.delete');
+
+		// Employee Attendance 
+	Route::get('/employee/attendnace/view',[EmployeeAttendanceController::class,'index'])->name('emaployee.attendnace');
+	Route::get('/employee/attendnace/create',[EmployeeAttendanceController::class,'create'])->name('emaployee.attendnace.create');
+	Route::post('/employee/attendnace/store',[EmployeeAttendanceController::class,'store'])->name('emaployee.attendnace.store');
+	Route::get('/employee/attendnace/{date}/edit',[EmployeeAttendanceController::class,'edit'])->name('emaployee.attendance.edit');
+	Route::put('/employee/attendnace/{date}/update',[EmployeeAttendanceController::class,'editStore'])->name('emaployee.attendnace.update');
+	Route::get('/attendnace/{date}/details',[EmployeeAttendanceController::class,'details'])->name('attendnace.details');
+	Route::get('/attendnaces/month',[EmployeeAttendanceController::class,'attendMonth'])->name('attendnace.month');
+	Route::get('/montyAttendance/',[EmployeeAttendanceController::class,'montlyAttendance'])->name('monthly.attendance');
 
 	});
 });	

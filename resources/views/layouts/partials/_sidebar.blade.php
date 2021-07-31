@@ -212,6 +212,18 @@
                   <p>Empolyee Leave</p>
                 </a>
               </li>
+               <li class="nav-item">
+                <a href="{{route('emaployee.attendnace')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Empolyee Attendance</p>
+                </a>
+              </li>
+               <li class="nav-item">
+                <a href="{{route('attendnace.month')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Employee Wise Att:</p>
+                </a>
+              </li>
              
          
               

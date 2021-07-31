@@ -50,8 +50,8 @@
                           <div class="form-group">
                             <label for="exampleInputEmail1">Father Name</label>
                             <input type="text" name="f_name" class="form-control form-control-sm" id="name" placeholder="Enter Father Name" value="{{$a_student->student->f_name}}">
-                            @if($errors->has('name'))
-                            <span class="text-danger">{{$errors->first('name')}}</span>
+                            @if($errors->has('f_name'))
+                            <span class="text-danger">{{$errors->first('f_name')}}</span>
                             @endif
                           </div>
                         </div>
@@ -60,8 +60,8 @@
                           <div class="form-group">
                             <label for="exampleInputEmail1">Mother Name</label>
                             <input type="text" name="m_name" class="form-control form-control-sm" id="name" placeholder="Enter Mother Name" value="{{$a_student->student->m_name}}">
-                            @if($errors->has('name'))
-                            <span class="text-danger">{{$errors->first('name')}}</span>
+                            @if($errors->has('m_name'))
+                            <span class="text-danger">{{$errors->first('m_name')}}</span>
                             @endif
                           </div>
                         </div>
@@ -70,8 +70,8 @@
                           <div class="form-group">
                             <label for="exampleInputEmail1">Mobile</label>
                             <input type="text" name="mobile" class="form-control form-control-sm" id="name" placeholder="Enter Mobile Number" value="{{$a_student->student->mobile}}">
-                            @if($errors->has('name'))
-                            <span class="text-danger">{{$errors->first('name')}}</span>
+                            @if($errors->has('mobile'))
+                            <span class="text-danger">{{$errors->first('mobile')}}</span>
                             @endif
                           </div>
                         </div>
@@ -80,8 +80,8 @@
                           <div class="form-group">
                             <label for="exampleInputEmail1">Address</label>
                             <input type="text" name="address" class="form-control form-control-sm" id="name" placeholder="Enter Address" value="{{$a_student->student->address}}">
-                            @if($errors->has('name'))
-                            <span class="text-danger">{{$errors->first('name')}}</span>
+                            @if($errors->has('address'))
+                            <span class="text-danger">{{$errors->first('address')}}</span>
                             @endif
                           </div>
                         </div>
@@ -95,6 +95,9 @@
                                 <option value="{{$gender->id}}" {{(@$a_student->student->gender_id == $gender->id)?'selected':''}}>{{$gender->name}}</option>
                               @endforeach
                             </select>
+                             @if($errors->has('gender_id'))
+                            <span class="text-danger">{{$errors->first('gender_id')}}</span>
+                            @endif
                           
                           </div>
                         </div>
@@ -108,8 +111,8 @@
                                 <option value="{{$religion->id}}" {{(@$a_student->student->religion_id == $religion->id)?'selected':''}}>{{$religion->name}}</option>
                               @endforeach
                             </select>
-                            @if($errors->has('name'))
-                            <span class="text-danger">{{$errors->first('name')}}</span>
+                            @if($errors->has('religion_id'))
+                            <span class="text-danger">{{$errors->first('religion_id')}}</span>
                             @endif
                           </div>
                         </div>
@@ -118,8 +121,8 @@
                           <div class="form-group">
                             <label for="exampleInputEmail1">Date Of Birth</label>
                             <input type="date" name="dob" class="form-control form-control-sm" id="name" value="{{$a_student->student->dob}}" autocomplete="off">
-                            @if($errors->has('name'))
-                            <span class="text-danger">{{$errors->first('name')}}</span>
+                            @if($errors->has('dob'))
+                            <span class="text-danger">{{$errors->first('dob')}}</span>
                             @endif
                           </div>
                         </div>
@@ -128,8 +131,8 @@
                           <div class="form-group">
                             <label for="exampleInputEmail1">Discount</label>
                             <input type="text" name="discount" class="form-control form-control-sm" id="name" placeholder="Enter Fee Category name" value="{{$a_student->discount->discount}}">
-                            @if($errors->has('name'))
-                            <span class="text-danger">{{$errors->first('name')}}</span>
+                            @if($errors->has('discount'))
+                            <span class="text-danger">{{$errors->first('discount')}}</span>
                             @endif
                           </div>
                         </div>
@@ -143,8 +146,8 @@
                                 <option value="{{$year->id}}" {{(@$a_student->year_id == $year->id)?'selected':''}}>{{$year->name}}</option>
                               @endforeach
                             </select>
-                            @if($errors->has('name'))
-                            <span class="text-danger">{{$errors->first('name')}}</span>
+                            @if($errors->has('year_id'))
+                            <span class="text-danger">{{$errors->first('year_id')}}</span>
                             @endif
                           </div>
                         </div>

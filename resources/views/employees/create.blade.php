@@ -49,8 +49,8 @@
                           <div class="form-group">
                             <label for="exampleInputEmail1">Father Name</label>
                             <input type="text" name="f_name" class="form-control form-control-sm" id="name" placeholder="Enter Father Name" value="">
-                            @if($errors->has('name'))
-                            <span class="text-danger">{{$errors->first('name')}}</span>
+                            @if($errors->has('f_name'))
+                            <span class="text-danger">{{$errors->first('f_name')}}</span>
                             @endif
                           </div>
                         </div>
@@ -59,8 +59,8 @@
                           <div class="form-group">
                             <label for="exampleInputEmail1">Mother Name</label>
                             <input type="text" name="m_name" class="form-control form-control-sm" id="name" placeholder="Enter Mother Name" value="">
-                            @if($errors->has('name'))
-                            <span class="text-danger">{{$errors->first('name')}}</span>
+                            @if($errors->has('m_name'))
+                            <span class="text-danger">{{$errors->first('m_name')}}</span>
                             @endif
                           </div>
                         </div>
@@ -69,8 +69,8 @@
                           <div class="form-group">
                             <label for="exampleInputEmail1">Mobile</label>
                             <input type="text" name="mobile" class="form-control form-control-sm" id="name" placeholder="Enter Mobile Number" value="">
-                            @if($errors->has('name'))
-                            <span class="text-danger">{{$errors->first('name')}}</span>
+                            @if($errors->has('mobile'))
+                            <span class="text-danger">{{$errors->first('mobile')}}</span>
                             @endif
                           </div>
                         </div>
@@ -79,8 +79,8 @@
                           <div class="form-group">
                             <label for="exampleInputEmail1">Address</label>
                             <input type="text" name="address" class="form-control form-control-sm" id="name" placeholder="Enter Address" value="">
-                            @if($errors->has('name'))
-                            <span class="text-danger">{{$errors->first('name')}}</span>
+                            @if($errors->has('address'))
+                            <span class="text-danger">{{$errors->first('address')}}</span>
                             @endif
                           </div>
                         </div>
@@ -94,6 +94,10 @@
                                 <option value="{{$gender->id}}">{{$gender->name}}</option>
                               @endforeach
                             </select>
+                             @if($errors->has('gender_id'))
+                            <span class="text-danger">{{$errors->first('gender_id')}}</span>
+                            @endif
+                         
                           
                           </div>
                         </div>
@@ -107,8 +111,8 @@
                                 <option value="{{$religion->id}}" {{(@$a_student->student->religion_id == $religion->id)?'selected':''}}>{{$religion->name}}</option>
                               @endforeach
                             </select>
-                            @if($errors->has('name'))
-                            <span class="text-danger">{{$errors->first('name')}}</span>
+                            @if($errors->has('religion_id'))
+                            <span class="text-danger">{{$errors->first('religion_id')}}</span>
                             @endif
                           </div>
                         </div>
@@ -142,6 +146,9 @@
                                 <option value="{{$designation->id}}">{{$designation->name}}</option>
                               @endforeach
                             </select>
+                             @if($errors->has('designation_id'))
+                            <span class="text-danger">{{$errors->first('designation_id')}}</span>
+                            @endif
                           
                           </div>
                         </div>
@@ -149,7 +156,7 @@
                           <div class="form-group">
                             <label for="exampleInputEmail1">Salary</label>
                             <input type="text" name="salary" class="form-control form-control-sm" id="salary" placeholder="Enter salary" autocomplete="off" >
-                            @if($errors->has('dob'))
+                            @if($errors->has('salary'))
                             <span class="text-danger">{{$errors->first('salary')}}</span>
                             @endif
                           </div>
