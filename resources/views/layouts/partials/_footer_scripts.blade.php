@@ -380,5 +380,123 @@
   });
 </script>
 
+<script type="text/javascript">
+  // marks entry javascript
+  $(document).on("click","#getMark",function(){
+    var year_id = $("#year_id").val();
+    var student_class_id = $("#student_class_id").val();
+    var assign_subject_id = $("#assign_subject_id").val();
+    var exam_type_id = $("#exam_type_id").val();
+
+    if(year_id == ''){
+      $.notify("Year Required",{golbalPosition:'top right',className:'error'});
+      return false;
+    }
+    if(student_class_id == ''){
+      $.notify("Class Required",{golbalPosition:'top right',className:'error'});
+      return false;
+    }
+      if(assign_subject_id == ''){
+      $.notify("Assing Subject Required",{golbalPosition:'top right',className:'error'});
+      return false;
+    }
+    if(exam_type_id == ''){
+      $.notify("Exam Type Required",{golbalPosition:'top right',className:'error'});
+      return false;
+    }
+  
+    $.ajax({
+        url:"{{route('get.student.mark')}}",
+        type: "GET",
+        data:{'year_id':year_id,'student_class_id':student_class_id},
+        success:function(data){
+          $('#roll-generat').removeClass('d-none');
+          var html = '';
+          $.each(data, function(key, v){
+            html +=
+            '<tr>'+
+            '<td>'+v.student.id_no+'<input type="hidden" name="student_id[]" value="'+v.student.id+'"> <input type="hidden" name="id_no[]" value="'+v.student.id_no+'"> </td>'+
+            '<td>'+v.student.name+'</td>'+
+            '<td>'+v.student.f_name+'</td>'+
+            '<td><input type="number" required="" name="marks[]" class="form-controll sm-form-controll" value="" <td>'+
+            '</tr>';
+          });
+            html = $('#roll-generate-tr').html(html);
+        }
+    });
+
+
+  });
+</script>
+
+<script type="text/javascript">
+  // marks entry javascript
+  $(document).on("click","#getEdit",function(){
+    var year_id = $("#year_id").val();
+    var student_class_id = $("#student_class_id").val();
+    var assign_subject_id = $("#assign_subject_id").val();
+    var exam_type_id = $("#exam_type_id").val();
+
+    if(year_id == ''){
+      $.notify("Year Required",{golbalPosition:'top right',className:'error'});
+      return false;
+    }
+    if(student_class_id == ''){
+      $.notify("Class Required",{golbalPosition:'top right',className:'error'});
+      return false;
+    }
+      if(assign_subject_id == ''){
+      $.notify("Assing Subject Required",{golbalPosition:'top right',className:'error'});
+      return false;
+    }
+    if(exam_type_id == ''){
+      $.notify("Exam Type Required",{golbalPosition:'top right',className:'error'});
+      return false;
+    }
+  
+    $.ajax({
+        url:"{{route('get.edit.student.mark')}}",
+        type: "GET",
+        data:{'year_id':year_id,'student_class_id':student_class_id,'assign_subject_id':assign_subject_id,'exam_type_id':exam_type_id},
+        success:function(data){
+          $('#roll-generat').removeClass('d-none');
+          var html = '';
+          $.each(data, function(key, v){
+            html +=
+            '<tr>'+
+            '<td>'+v.student.id_no+'<input type="hidden" name="student_id[]" value="'+v.student.id+'"> <input type="hidden" name="id_no[]" value="'+v.student.id_no+'"> </td>'+
+            '<td>'+v.student.name+'</td>'+
+            '<td>'+v.student.f_name+'</td>'+
+            '<td><input type="number" required="" name="marks[]" class="form-controll sm-form-controll" value="'+v.marks+'" <td>'+
+            '</tr>';
+          });
+            html = $('#roll-generate-tr').html(html);
+        }
+    });
+
+
+  });
+</script>
+<script type="text/javascript">
+  //  Get Subject Javascript
+  $(document).on("change","#student_class_id",function(){
+    var student_class_id = $("#student_class_id").val();
+    
+      $.ajax({
+        url:"{{route('get.subject')}}",
+        type: "GET",
+        data:{student_class_id:student_class_id},
+        success:function(data){
+          var html = '<option value="">Select Subject</option>';
+          $.each(data,function(key,v){
+            html += '<option value="'+v.id+'">'+v.subject.name+' </option>';
+          });
+          $("#assign_subject_id").html(html);
+        }
+    });
+
+
+  });
+</script>
 
 @stack('scripts')

@@ -30,23 +30,24 @@ class EmployeesController extends Controller
     }
     public function store(Request $r)
     {
-        $this->validate($r,[
-            'name' => 'required',
-            'password' => 'required',
-            'f_name' => 'required',
-            'm_name' => 'required',
-            'mobile' => 'required',
-            'gender_id' => 'required',
-            'address' => 'required',
-            'religion_id' => 'required',
-            'salary' => 'required',
-            'designation_id' => 'required',
-            'dob' => 'required',
-            'join_date' => 'required',
-            'effective_date' => 'required',
-            'designation_id' => 'required',
-            'image' => 'required',
-        ]);
+
+            $this->validate($r,[
+                'name'     => 'required',
+                'password' => 'required',
+                'f_name'   => 'required',
+                'm_name'   => 'required',
+                'mobile'   => 'required',
+                'gender_id' => 'required',
+                'address' => 'required',
+                'religion_id' => 'required',
+                'salary' => 'required',
+                'designation_id' => 'required',
+                'dob' => 'required',
+                'join_date' => 'required',
+                'effective_date' => 'required',
+                'designation_id' => 'required',
+                'image' => ''
+            ]);
 
 
                 $checkYear = date('Y',strtotime($r->join_date));

@@ -5,12 +5,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Student Manage</h1>
+            <h1 class="m-0">Attendance Manage</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-              <li class="breadcrumb-item active">Student List</li>
+              <li class="breadcrumb-item active">Attendance List List</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->

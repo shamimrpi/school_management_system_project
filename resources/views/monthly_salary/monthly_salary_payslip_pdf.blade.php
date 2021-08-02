@@ -38,23 +38,33 @@
 	</style>
 </head>
 <body>
-	<?php
-		 $date = date('Y-m',strtotime($data['date']));
-	       if($date != ''){
-	            $where[] = ['date','like',$date.'%'];
-	        }
+	@php
+		
 
-	     
+	    $date = date('Y-m',strtotime($data['date']));
+		       if($date != ''){
+		            $where[] = ['date','like',$date.'%'];
+		        }
 	       $attendance = \App\Models\EmployeeAttendance::with(['user'])->where($where)->where('employee_id',$data->employee_id)->get();
-         
-           $absentCount = count($attendance->where('attendance_status','Absent'));
+	       $salary           = (float)$data['user']['salary'];
+         	
+           
            $presentCount = count($attendance->where('attendance_status','Present'));
-		   $salary           = (float)$data['user']['salary'];
-           $salaryPerday     = (float)$salary/30;
-           $totalPaySalary   = $presentCount*(float)$salaryPerday;
+           $leaveCount   = count($attendance->where('attendance_status','Leave'));
+
+           $payableDays  = (float)$presentCount+(float)$leaveCount;
+
+           // edit 
+           $month = date('m',strtotime($data->date));
+           $year  = date('Y',strtotime($data->date));
+           $totalDays = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+           $absentCount  = $totalDays-(float)$payableDays;
+           $perdaySalary     = (float)$salary/$totalDays;
+           $payableSalary      = $payableDays*$perdaySalary;
+           
         
           
-	?>
+	@endphp
 
 		<h1 style="text-align: center;">Monthly Salary Payslip of  {{$date}};</h1>
 		
@@ -76,16 +86,33 @@
 			<td>{{$data->user->f_name}}</td>
 		</tr>
 		<tr>
+			<th>Total Days</th>
+			<td>{{$totalDays}}</td>
+		</tr>
+		<tr>
 			<th>Total Absent</th>
 			<td>{{$absentCount}}</td>
 		</tr>
+		<tr>
+			<th>Total Present</th>
+			<td>{{$presentCount}}</td>
+		</tr>
+		<tr>
+			<th>Total Leave</th>
+			<td>{{$leaveCount}}</td>
+		</tr>
+		<tr>
+			<th>Payable Days</th>
+			<td>{{$payableDays}}</td>
+		</tr>
+		
 		<tr>
 			<th>Basic Salary</th>
 			<td>{{$data->user->salary}}</td>
 		</tr>
 		<tr>
 			<th>Payable Salary</th>
-			<td>{{$totalPaySalary}}</td>
+			<td>{{$payableSalary}}</td>
 		</tr>
 
 	

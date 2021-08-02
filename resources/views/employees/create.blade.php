@@ -5,12 +5,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Fee Category</h1>
+            <h1 class="m-0">Create Employee Manage</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-              <li class="breadcrumb-item active">@if(isset($editData)) Edit Fee Category @else Fee Category Create @endif</li>
+              <li class="breadcrumb-item active">Create Employee </li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -25,7 +25,7 @@
 
             <div class="card card-primary card-outline">
               <div class="card-body">
-                <h5 class="card-title">Create Student</h5>
+                <h5 class="card-title">Create Employee</h5>
                 <a class="btn btn-info btn-sm float-sm-right" href="{{route('emaployee.all')}}">Employee list</a>
                 <br>
                 <form action="{{route('employee.store')}}" method="POST" enctype="multipart/form-data">

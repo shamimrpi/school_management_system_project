@@ -25,8 +25,9 @@ use App\Http\Controllers\EmployeeSalaryController;
 use App\Http\Controllers\EmployeeLeaveController;
 use App\Http\Controllers\EmployeeAttendanceController;
 use App\Http\Controllers\MonthlySalaryController;
-
-
+use App\Http\Controllers\GetMarkController;
+use App\Http\Controllers\DefaultController;
+use App\Http\Controllers\GradePointController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -180,7 +181,27 @@ Route::prefix('employee')->group(function(){
 	Route::get('/monthly/salary',[MonthlySalaryController::class,'index'])->name('montly.salary');
 	Route::get('/monthly/slaray/get',[MonthlySalaryController::class,'getSalary'])->name('monthly.salary.get');
 	Route::get('/salary/payslip/{employee_id}',[MonthlySalaryController::class,'paySlip'])->name('salary.payslip');
+
+	Route::get('/marks/getmarks',[GetMarkController::class,'getMark'])->name('get.marks');
+	Route::get('/marks/student/getmarks',[GetMarkController::class,'getStudentMark'])->name('get.student.mark');
+	Route::post('/marks/student/storemarks',[GetMarkController::class,'storeMarks'])->name('store.student.marks');
+
+	Route::get('/marks/editmarks/',[GetMarkController::class,'edit'])->name('edit.marks');
+	Route::get('/marks/student/geteditmarks',[GetMarkController::class,'getStudentEditMark'])->name('get.edit.student.mark');
+	Route::post('/marks/student/editstore',[GetMarkController::class,'storeEditMarks'])->name('edit.store.student.marks');
+
+	//Grade point
+	Route::get('/marks/grade/',[GradePointController::class,'index'])->name('marks.grade');
+	Route::get('/marks/grade/create',[GradePointController::class,'create'])->name('create.marks.grade');
+	Route::post('/marks/grade/store',[GradePointController::class,'store'])->name('store.marks.grade');
+	Route::get('/marks/grade/edit/{id}',[GradePointController::class,'edit'])->name('edit.marks.grade');
+	Route::post('/marks/grade/edit/store/{id}',[GradePointController::class,'editStore'])->name('edit.store.marks.grade');
+	
 	});
+
+	
+
+	Route::get('/getSubject',[DefaultController::class,'getSubject'])->name('get.subject');
 });	
 
 

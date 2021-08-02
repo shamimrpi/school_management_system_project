@@ -35,7 +35,7 @@
               <p>
                 Manage Users
                  <i class="right fas fa-angle-left"></i>
-                <span class="badge badge-info right">6</span>
+                <span class="badge badge-info right"></span>
               </p>
             </a>
             <ul class="nav nav-treeview">
@@ -55,7 +55,7 @@
               <p>
                 Manage Setup
                  <i class="right fas fa-angle-left"></i>
-                <span class="badge badge-info right">6</span>
+                <span class="badge badge-info right"></span>
               </p>
             </a>
             <ul class="nav nav-treeview">
@@ -138,7 +138,7 @@
               <p>
                 Manage Student
                  <i class="right fas fa-angle-left"></i>
-                <span class="badge badge-info right">6</span>
+                <span class="badge badge-info right"></span>
               </p>
             </a>
             <ul class="nav nav-treeview">
@@ -188,7 +188,7 @@
               <p>
                 Manage Employee
                  <i class="right fas fa-angle-left"></i>
-                <span class="badge badge-info right">6</span>
+                <span class="badge badge-info right"></span>
               </p>
             </a>
             <ul class="nav nav-treeview">
@@ -238,16 +238,46 @@
 
             </ul>
           </li>
-
-          <li class="nav-item">
+            </li>
+           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Simple Link
-                <span class="right badge badge-danger">New</span>
+                Marks Management
+                 <i class="right fas fa-angle-left"></i>
+                <span class="badge badge-info right"></span>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('get.marks')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Marks Entry</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('edit.marks')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Marks Edit</p>
+                </a>
+              </li>
+               <li class="nav-item">
+                <a href="{{route('marks.grade')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Marks Grade</p>
+                </a>
+              </li>
+
+              
+             
+         
+              
+
+               
+
+            </ul>
           </li>
+
             <li class="nav-item">
             <a href="{{route('logout')}}" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>

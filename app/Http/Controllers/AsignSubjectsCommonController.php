@@ -10,33 +10,38 @@ use App\Models\Student_class;
 class AsignSubjectsCommonController extends Controller
 {
     public function edit($student_class_id)
-    {
-    	$classes = Student_class::all();
-    	$subjects = Subject::all();
-    	$editData = AssignSubject::where('student_class_id',$student_class_id)->orderBy('subject_id','asc')->get();
-    	return view('asignsubjects.edit',compact(['classes','subjects','editData']));
-    }
+    	{
+	    	$classes = Student_class::all();
+	    	$subjects = Subject::all();
+	    	$editData = AssignSubject::where('student_class_id',$student_class_id)->orderBy('subject_id','asc')->get();
+	    	return view('asignsubjects.edit',compact(['classes','subjects','editData']));
+    	}
 
-	    public function update(Request $request,$student_class_id)
+	  public function update(Request $request,$student_class_id)
 	    {
 	    	
 	    	if($request->subject_id == NULL){
 	    		return redirect()->back()->with('errors','You can not select any subject');
 	    	}
 	    	else{
-	    		AssignSubject::where('student_class_id',$student_class_id)->delete();
-	    		$countClass = count($request->subject_id);
-		             for ($i=0; $i <$countClass; $i++) { 
-		                $a_subject = new AssignSubject();
-		                $a_subject->student_class_id = $request->student_class_id;
-		                $a_subject->subject_id = $request->subject_id[$i];
-		                $a_subject->full_mark = $request->full_mark[$i];
-		                $a_subject->pass_mark = $request->pass_mark[$i];
-		                $a_subject->subjective_mark = $request->subjective_mark[$i];
-		                $a_subject->save();
-		               
-			            }
-	       			
+	    		$data = AssignSubject::where('student_class_id',$student_class_id)->whereNotIn('subject_id',$request->subject_id)->delete();
+	    		
+		    		foreach($request->subject_id as $key=>$value){
+		    			$assignSubjectExist = AssignSubject::where('subject_id',$request->subject_id[$key])->where('student_class_id',$request->student_class_id)->first();
+		    			
+		    			if($assignSubjectExist){
+		    				$assignSubject = $assignSubjectExist;
+		    			}else{
+		    				$assignSubject = new AssignSubject();
+		    			}
+		    			$assignSubject->student_class_id = $request->student_class_id;
+		                $assignSubject->subject_id       = $request->subject_id[$key];
+		                $assignSubject->full_mark        = $request->full_mark[$key];
+		                $assignSubject->pass_mark        = $request->pass_mark[$key];
+		                $assignSubject->subjective_mark  = $request->subjective_mark[$key];
+		                $assignSubject->save();
+		    		}
+		       			
 	    		}
 	    		 flash('Assign Subject update successfully')->success();
 	               return redirect()->route('assign.index'); 
