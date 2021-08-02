@@ -24,6 +24,7 @@
 <script src="{{asset('js')}}/notify.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.min.js"></script>
 <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 
 <script type="text/javascript">
   $(document).ready(function(){
@@ -497,6 +498,97 @@
 
 
   });
+</script>
+<script type="text/javascript">
+$(document).ready(function () {
+ 
+ 
+ 
+$('#studentForm').validate({ // initialize the plugin
+ 
+    rules: {
+ 
+        name: {
+ 
+            required: true
+ 
+        },
+ 
+        f_name: {
+ 
+            required: true
+ 
+ 
+        },
+ 
+        m_name: {
+ 
+            required: true,
+ 
+ 
+        },
+        mobile: {
+ 
+            required: true,
+            digits: true
+ 
+ 
+        },
+          religion_id: {
+ 
+            required: true,
+ 
+ 
+        },
+        address: {
+ 
+            required: true,
+ 
+ 
+        },
+        gender_id: {
+ 
+            required: true,
+ 
+ 
+        },
+        join_date: {
+ 
+            required: true,
+            date:true,
+ 
+ 
+        },
+         dob: {
+ 
+            required: true,
+             date:true,
+ 
+ 
+        },
+        designation_id: {
+ 
+            required: true,
+ 
+ 
+        },
+        salary: {
+ 
+            required: true,
+             digits: true
+ 
+        },
+
+    
+    
+ 
+    }
+
+ 
+});
+ 
+});
+ 
 </script>
 
 @stack('scripts')
