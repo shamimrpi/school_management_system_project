@@ -24,7 +24,8 @@
 <script src="{{asset('js')}}/notify.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.min.js"></script>
 <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
-<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="{{asset('admin')}}/dist/js/jquery.validate.min.js"></script>
+
 
 <script type="text/javascript">
   $(document).ready(function(){
