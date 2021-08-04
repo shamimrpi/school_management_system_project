@@ -30,6 +30,7 @@ use App\Http\Controllers\DefaultController;
 use App\Http\Controllers\GradePointController;
 use App\Http\Controllers\AcctStudentFeeController;
 use App\Http\Controllers\OthersCostController;
+use App\Http\Controllers\AcctEmployeeController;
 
 
 
@@ -55,8 +56,10 @@ Route::post('/login',[LoginController::class,'authenticate'])->name('login.store
 
 Route::middleware(['auth'])->group(function () {
     //
+Route::get('/logout',[LoginController::class,'logout'])->name('logout');
+Route::get('/dashboard',[LoginController::class,'dashboard'])->name('dashboard');
 
-Route::prefix('admin')->group(function(){
+Route::prefix('Admin')->group(function(){
 
 
 	//Student Class route list
@@ -103,11 +106,9 @@ Route::prefix('admin')->group(function(){
 	Route::resource('/designations',DesignationsController::class)->except('show');
 
 
-	
+});
 
-	
-	});
-	
+Route::prefix('student')->group(function(){	
 	// Student Manage Controller 
 	Route::get('/student/all',[StudentManageController::class,'index'])->name('student.all');
 	Route::get('/student/create',[StudentManageController::class,'create'])->name('student.create');
@@ -120,16 +121,6 @@ Route::prefix('admin')->group(function(){
 	Route::get('/student/{student_id}/promotion',[StudentManageController::class,'promotion'])->name('student.promotion');
 
 	Route::post('/student/{student_id}/promotion/update',[StudentManageController::class,'promotionStore'])->name('student.promotion.store');
-
-	// users Controller route
-	Route::get('/users/create',[UsersController::class,'create'])->name('users.create');
-	Route::post('/users/store',[UsersController::class,'store'])->name('users.store');
-	Route::get('users/{id}/edit',[UsersController::class,'edit'])->name('users.edit');
-	Route::put('users/{id}/update',[UsersController::class,'update'])->name('users.update');
-	Route::get('/users',[UsersController::class,'index'])->name('users');
-	Route::get('/logout',[LoginController::class,'logout'])->name('logout');
-	Route::get('/dashboard',[LoginController::class,'dashboard'])->name('dashboard');
-
 	Route::get('/student_roll',[StudentRollGenController::class,'index'])->name('student.roll.gen');
 	Route::post('/student_roll/store',[StudentRollGenController::class,'store'])->name('student.roll.gen.store');
 	Route::get('/student_roll/get_student',[StudentRollGenController::class,'getStudent'])->name('student.roll.gen.get_student');
@@ -147,6 +138,18 @@ Route::prefix('admin')->group(function(){
 	Route::get('/exam/fee',[ExamFeeController::class,'index'])->name('student.exam.fee.view');
 	Route::get('/exam/fee/getstudent',[ExamFeeController::class,'getStudent'])->name('student.exam.fee.getStudent');
 	Route::get('/exam/fee/pdf',[ExamFeeController::class,'paySlip'])->name('student.exam.fee.slip');
+});
+
+Route::prefix('users')->group(function(){
+	// users Controller route
+	Route::get('/users/create',[UsersController::class,'create'])->name('users.create');
+	Route::post('/users/store',[UsersController::class,'store'])->name('users.store');
+	Route::get('users/{id}/edit',[UsersController::class,'edit'])->name('users.edit');
+	Route::put('users/{id}/update',[UsersController::class,'update'])->name('users.update');
+	Route::get('/users',[UsersController::class,'index'])->name('users');
+	
+});
+	
 
 Route::prefix('employee')->group(function(){
 
@@ -180,8 +183,8 @@ Route::prefix('employee')->group(function(){
 	Route::get('/attendnace/{date}/details',[EmployeeAttendanceController::class,'details'])->name('attendnace.details');
 	Route::get('/attendnaces/month',[EmployeeAttendanceController::class,'attendMonth'])->name('attendnace.month');
 	Route::get('/montyAttendance/',[EmployeeAttendanceController::class,'montlyAttendance'])->name('monthly.attendance');
-
-
+});
+Route::prefix('marks')->group(function(){
 		// Employee Monthly Salary 
 	Route::get('/monthly/salary',[MonthlySalaryController::class,'index'])->name('montly.salary');
 	Route::get('/monthly/slaray/get',[MonthlySalaryController::class,'getSalary'])->name('monthly.salary.get');
@@ -217,8 +220,14 @@ Route::prefix('accounts')->group(function(){
 	Route::get('/othercost/edit/{id}',[OthersCostController::class,'edit'])->name('others.cost.edit');
 	Route::put('/othercost/update/{id}',[OthersCostController::class,'update'])->name('others.cost.update');
 
-});
+	// account employee pay salary
+	Route::get('/employe/salary/view',[AcctEmployeeController::class,'index'])->name('employee.salary.view');
+	Route::get('/employe/salary/create',[AcctEmployeeController::class,'create'])->name('employee.salary.create');
+	Route::get('/employe/salary/getData',[AcctEmployeeController::class,'getData'])->name('employee.salary.getData');
+	Route::post('/employe/salary/store',[AcctEmployeeController::class,'store'])->name('employee.salary.store');
 
+});
+	
 	
 
 	Route::get('/getSubject',[DefaultController::class,'getSubject'])->name('get.subject');

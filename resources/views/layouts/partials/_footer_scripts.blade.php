@@ -710,5 +710,36 @@ $('#costForm').validate({ // initialize the plugin
   });
  </script>
 
+ <script type="text/javascript">
+   // Account employee Salary get data
+   $(document).on("click","#acctSalary",function(){
+  
+    var date = $("#date").val();
+
+      if(date == ''){
+      $.notify("Date Required",{golbalPosition:'top right',className:'error'});
+      return false;
+    }
+  
+    $.ajax({
+        url:"{{route('employee.salary.getData')}}",
+        type: "GET",
+        data:{'date':date},
+        beforeSend:function(data){
+
+        },
+        success:function(data){
+          var source = $("#document-template").html();
+          var template = Handlebars.compile(source);
+          var html = template(data);
+          $("#DocumentResults").html(html);
+          $('[data-toggle="tooltip"]').tooltip();
+        }
+    });
+
+
+  });
+ </script>
+
 
 @stack('scripts')

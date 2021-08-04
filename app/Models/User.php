@@ -71,5 +71,6 @@ class User extends Authenticatable
       {
         return $this->belongsTo(EmployeeLeave::class,'employee_id','id');
       }
+      
     
 }

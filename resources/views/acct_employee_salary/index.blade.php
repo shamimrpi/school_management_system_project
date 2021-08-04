@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-  
+	
  <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
@@ -32,7 +32,7 @@
                 <h5 class="card-title">Account Student Fee List</h5>
                 <br><br>
 
-                  <a href="{{route('student.fee.create')}}" class="btn btn-info fa fa-plus float-sm-right"> Add/Edit Fee</a>
+                  <a href="{{route('employee.salary.create')}}" class="btn btn-info fa fa-plus float-sm-right"> Add/Edit Salary</a>
               
                   <table id="example1" class="table table-bordered table-striped">
                       <thead>
@@ -40,25 +40,18 @@
                           <th>#SL</th>
                           <th>Name</th>
                           <th>ID NO</th>
-                          <th>Year </th>
-                          <th>Class</th>
-                         
-                          <th>Fee Type</th>
                           <th>Amount</th>
                           <th>Date</th>
                         </tr>
                       </thead>
                       <tbody>
-                        @foreach($allData as $key => $value)
+                        @foreach($data as $key => $value)
                             <tr>
-                              <td>{{$key+1}}</td>
-                              <td>{{$value->student->name}}</td>
-                              <td>{{$value->student->id_no}}</td>
-                              <td>{{$value->years->name}}</td>
-                              <td>{{$value->studentClass->name}}</td>
-                              <td>{{$value->feetype->name}}</td>
-                              <td>{{$value->amount}}</td>
-                              <td>{{$value->year}}-{{$value->month}}</td>
+                                <td>{{$key+1}}</td>
+                                <td>{{$value->user->name}}</td>
+                                <td>{{$value->user->id_no}}</td>
+                                <td>{{$value->amount}}</td>
+                                <td>{{$value->date}}</td>
                             </tr>
                         @endforeach
                       </tbody>
