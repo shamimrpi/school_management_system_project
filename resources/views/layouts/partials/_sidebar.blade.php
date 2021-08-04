@@ -31,7 +31,7 @@
                with font-awesome or any other icon font library -->
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon fas fa-users"></i>
               <p>
                 Manage Users
                  <i class="right fas fa-angle-left"></i>
@@ -51,7 +51,7 @@
 
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon fas fa-wrench"></i>
               <p>
                 Manage Setup
                  <i class="right fas fa-angle-left"></i>
@@ -134,7 +134,7 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon fa fa-user-graduate"></i>
               <p>
                 Manage Student
                  <i class="right fas fa-angle-left"></i>
@@ -184,7 +184,7 @@
           </li>
            <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon fas fa-diagnoses"></i>
               <p>
                 Manage Employee
                  <i class="right fas fa-angle-left"></i>
@@ -231,17 +231,13 @@
                 </a>
               </li>
              
-         
-              
-
-               
 
             </ul>
-          </li>
             </li>
+          </li>
            <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon fas fa-bookmark"></i>
               <p>
                 Marks Management
                  <i class="right fas fa-angle-left"></i>
@@ -268,23 +264,42 @@
                 </a>
               </li>
 
-              
-             
-         
-              
+            </ul>
+          </li>
 
-               
+            <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-dollar-sign"></i>
+              <p>
+                Accounts Management
+                 <i class="right fas fa-angle-left"></i>
+                <span class="badge badge-info right"></span>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('student.fee.view')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Student Fee</p>
+                </a>
+              </li>
+               <li class="nav-item">
+                <a href="{{route('others.cost.view')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Others Cost</p>
+                </a>
+              </li>
+           
 
             </ul>
           </li>
 
             <li class="nav-item">
             <a href="{{route('logout')}}" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
+              <i style="color:red" class="nav-icon fas fa-sign-out-alt"></i>
+              <p >
                 Logout
-                 <i class="right fas fa-angle-left"></i>
-                <span class="badge badge-info right"></span>
+              
               </p>
             </a>
           </li>

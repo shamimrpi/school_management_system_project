@@ -21,9 +21,13 @@
 <script src="{{asset('admin')}}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <!-- sweet alert -->
 <script src="{{asset('js')}}/sweetalert.min.js"></script>
+<!-- notify js -->
 <script src="{{asset('js')}}/notify.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.min.js"></script>
+<!-- handlebar js -->
+<script src="{{asset('js')}}/handlebars.js"></script>
+
 <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
+<!-- validation js -->
 <script src="{{asset('admin')}}/dist/js/jquery.validate.min.js"></script>
 
 
@@ -505,7 +509,7 @@ $(document).ready(function () {
  
  
  
-$('#studentForm').validate({ // initialize the plugin
+$('#employeeForm').validate({ // initialize the plugin
  
     rules: {
  
@@ -579,6 +583,31 @@ $('#studentForm').validate({ // initialize the plugin
              digits: true
  
         },
+         year_id: {
+ 
+            required: true,
+             
+ 
+        },
+         discount: {
+ 
+            required: true,
+            digits:true,
+             
+ 
+        },
+        student_class_id: {
+ 
+            required: true,
+             
+ 
+        },
+         image: {
+ 
+            required: true,
+             
+ 
+        },
 
     
     
@@ -591,5 +620,95 @@ $('#studentForm').validate({ // initialize the plugin
 });
  
 </script>
+
+<script type="text/javascript">
+
+ $(document).ready(function () {
+ 
+ 
+ 
+$('#costForm').validate({ // initialize the plugin
+ 
+    rules: {
+ 
+        date: {
+ 
+            required: true
+ 
+        },
+ 
+        amount: {
+ 
+            required: true,
+            digits:true,
+ 
+ 
+        },
+ 
+        description: {
+ 
+            required: true,
+ 
+ 
+        },
+       
+       
+    }
+
+ 
+  });
+ 
+});
+ 
+</script>
+ 
+ 
+
+
+<script type="text/javascript">
+   // Account Student Fee get data
+   $(document).on("click","#acctStudentFee",function(){
+    var year_id = $("#year_id").val();
+    var student_class_id = $("#student_class").val();
+    var fee_category_id = $("#fee_category_id").val();
+    var date = $("#date").val();
+
+    if(year_id == ''){
+      $.notify("Year Required",{golbalPosition:'top right',className:'error'});
+      return false;
+    }
+    if(student_class_id == ''){
+      $.notify("Class Required",{golbalPosition:'top right',className:'error'});
+      return false;
+    }
+     if(fee_category_id == ''){
+      $.notify("Fee Category Required",{golbalPosition:'top right',className:'error'});
+      return false;
+    }
+      if(date == ''){
+      $.notify("Date Required",{golbalPosition:'top right',className:'error'});
+      return false;
+    }
+  
+    $.ajax({
+        url:"{{route('student.fee.get.data')}}",
+        type: "GET",
+        data:{'year_id':year_id,'student_class_id':student_class_id,'fee_category_id':fee_category_id,'date':date},
+        beforeSend:function(data){
+
+        },
+        success:function(data){
+          var source = $("#document-template").html();
+          var template = Handlebars.compile(source);
+          var html = template(data);
+          $("#DocumentResults").html(html);
+          $('[data-toggle="tooltip"]').tooltip();
+        }
+    });
+
+
+  });
+ </script>
+
 
 @stack('scripts')

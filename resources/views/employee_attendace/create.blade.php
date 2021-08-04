@@ -80,14 +80,14 @@
                                   @endforeach
                                 </tbody>
                             </table>
-                        
-                    
+                            <br/>
+                            <div class="row"> 
+                              <div class="col-md-3">
+                                <button type="submit" class="btn btn-primary fa fa-save"> Save</button>
+                              </div>
+                            </div>
                         </div>
-                        <div class="row"> 
-                          <div class="card-footer">
-                            <button type="submit" class="btn btn-primary fa fa-save"> Save</button>
-                          </div>
-                        </div>
+                      
                       </div>
                 </form>
                 </div>

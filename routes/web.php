@@ -28,6 +28,11 @@ use App\Http\Controllers\MonthlySalaryController;
 use App\Http\Controllers\GetMarkController;
 use App\Http\Controllers\DefaultController;
 use App\Http\Controllers\GradePointController;
+use App\Http\Controllers\AcctStudentFeeController;
+use App\Http\Controllers\OthersCostController;
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -198,6 +203,21 @@ Route::prefix('employee')->group(function(){
 	Route::post('/marks/grade/edit/store/{id}',[GradePointController::class,'editStore'])->name('edit.store.marks.grade');
 	
 	});
+
+Route::prefix('accounts')->group(function(){
+	// acoount student fee
+	Route::get('/student/fee',[AcctStudentFeeController::class,'index'])->name('student.fee.view');
+	Route::get('/student/fee/create',[AcctStudentFeeController::class,'create'])->name('student.fee.create');
+	Route::post('/student/fee/store',[AcctStudentFeeController::class,'store'])->name('student.fee.store');
+	Route::get('/student/fee/getData',[AcctStudentFeeController::class,'getData'])->name('student.fee.get.data');
+
+	Route::get('/othercost/view',[OthersCostController::class,'index'])->name('others.cost.view');
+	Route::get('/othercost/create',[OthersCostController::class,'create'])->name('others.cost.create');
+	Route::post('/othercost/store',[OthersCostController::class,'store'])->name('others.cost.store');
+	Route::get('/othercost/edit/{id}',[OthersCostController::class,'edit'])->name('others.cost.edit');
+	Route::put('/othercost/update/{id}',[OthersCostController::class,'update'])->name('others.cost.update');
+
+});
 
 	
 

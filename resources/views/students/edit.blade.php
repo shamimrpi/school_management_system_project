@@ -28,7 +28,7 @@
                 <h5 class="card-title">Edit Student Information</h5>
                 <a class="btn btn-info btn-sm float-sm-right" href="{{route('student.all')}}">Student list</a>
                 <br>
-                <form action="{{route('student.update',$a_student->student_id)}}" method="POST" enctype="multipart/form-data">
+                <form action="{{route('student.update',$a_student->student_id)}}" id="employeeForm" method="POST" enctype="multipart/form-data">
                   @csrf
                 
                     @method('PUT')
@@ -40,64 +40,52 @@
                           <div class="form-group">
                             <label for="exampleInputEmail1">Student Name</label>
                             <input type="text" name="name" class="form-control form-control-sm" id="name" placeholder="Enter Fee Category name" value="{{$a_student['student']['name']}}">
-                            @if($errors->has('name'))
-                            <span class="text-danger">{{$errors->first('name')}}</span>
-                            @endif
+                            
                           </div>
                         </div>
 
                         <div class="col-md-4">
                           <div class="form-group">
                             <label for="exampleInputEmail1">Father Name</label>
-                            <input type="text" name="f_name" class="form-control form-control-sm" id="name" placeholder="Enter Father Name" value="{{$a_student->student->f_name}}">
-                            @if($errors->has('f_name'))
-                            <span class="text-danger">{{$errors->first('f_name')}}</span>
-                            @endif
+                            <input type="text" name="f_name" class="form-control form-control-sm" id="f_name" placeholder="Enter Father Name" value="{{$a_student->student->f_name}}">
+                           
                           </div>
                         </div>
 
                         <div class="col-md-4">
                           <div class="form-group">
                             <label for="exampleInputEmail1">Mother Name</label>
-                            <input type="text" name="m_name" class="form-control form-control-sm" id="name" placeholder="Enter Mother Name" value="{{$a_student->student->m_name}}">
-                            @if($errors->has('m_name'))
-                            <span class="text-danger">{{$errors->first('m_name')}}</span>
-                            @endif
+                            <input type="text" name="m_name" class="form-control form-control-sm" id="m_name" placeholder="Enter Mother Name" value="{{$a_student->student->m_name}}">
+                          
                           </div>
                         </div>
 
                         <div class="col-md-4">
                           <div class="form-group">
                             <label for="exampleInputEmail1">Mobile</label>
-                            <input type="text" name="mobile" class="form-control form-control-sm" id="name" placeholder="Enter Mobile Number" value="{{$a_student->student->mobile}}">
-                            @if($errors->has('mobile'))
-                            <span class="text-danger">{{$errors->first('mobile')}}</span>
-                            @endif
+                            <input type="text" name="mobile" class="form-control form-control-sm" id="mobile" placeholder="Enter Mobile Number" value="{{$a_student->student->mobile}}">
+                            
                           </div>
                         </div>
 
                         <div class="col-md-4">
                           <div class="form-group">
                             <label for="exampleInputEmail1">Address</label>
-                            <input type="text" name="address" class="form-control form-control-sm" id="name" placeholder="Enter Address" value="{{$a_student->student->address}}">
-                            @if($errors->has('address'))
-                            <span class="text-danger">{{$errors->first('address')}}</span>
-                            @endif
+                            <input type="text" name="address" class="form-control form-control-sm" id="address" placeholder="Enter Address" value="{{$a_student->student->address}}">
+                            
                           </div>
                         </div>
 
                         <div class="col-md-4">
                           <div class="form-group">
                             <label for="exampleInputEmail1">Gender</label>
-                            <select class="form-control form-control-sm" name="gender_id" >
+                            <select class="form-control form-control-sm" name="gender_id" id="gender_id">
                               <option value="">Select Gender</option>
                               @foreach($genders as $gender)
                                 <option value="{{$gender->id}}" {{(@$a_student->student->gender_id == $gender->id)?'selected':''}}>{{$gender->name}}</option>
                               @endforeach
                             </select>
-                             @if($errors->has('gender_id'))
-                            <span class="text-danger">{{$errors->first('gender_id')}}</span>
-                            @endif
+                             
                           
                           </div>
                         </div>
@@ -105,65 +93,55 @@
                         <div class="col-md-4">
                           <div class="form-group">
                             <label for="exampleInputEmail1">Religion</label>
-                            <select class="form-control form-control-sm"  name="religion_id">
+                            <select class="form-control form-control-sm"  name="religion_id" id="religion_id">
                               <option value="">Select Religion</option>
                                @foreach($religions as $religion)
                                 <option value="{{$religion->id}}" {{(@$a_student->student->religion_id == $religion->id)?'selected':''}}>{{$religion->name}}</option>
                               @endforeach
                             </select>
-                            @if($errors->has('religion_id'))
-                            <span class="text-danger">{{$errors->first('religion_id')}}</span>
-                            @endif
+                          
                           </div>
                         </div>
 
                         <div class="col-md-4">
                           <div class="form-group">
                             <label for="exampleInputEmail1">Date Of Birth</label>
-                            <input type="date" name="dob" class="form-control form-control-sm" id="name" value="{{$a_student->student->dob}}" autocomplete="off">
-                            @if($errors->has('dob'))
-                            <span class="text-danger">{{$errors->first('dob')}}</span>
-                            @endif
+                            <input type="date" name="dob" class="form-control form-control-sm" id="dob" value="{{$a_student->student->dob}}" autocomplete="off">
+                            
                           </div>
                         </div>
 
                         <div class="col-md-4">
                           <div class="form-group">
                             <label for="exampleInputEmail1">Discount</label>
-                            <input type="text" name="discount" class="form-control form-control-sm" id="name" placeholder="Enter Fee Category name" value="{{$a_student->discount->discount}}">
-                            @if($errors->has('discount'))
-                            <span class="text-danger">{{$errors->first('discount')}}</span>
-                            @endif
+                            <input type="text" name="discount" class="form-control form-control-sm" id="discount" placeholder="Enter Fee Category name" value="{{$a_student->discount->discount}}">
+                           
                           </div>
                         </div>
 
                           <div class="col-md-4">
                           <div class="form-group">
                             <label for="exampleInputEmail1">year</label>
-                            <select class="form-control form-control-sm" name="year_id">
+                            <select class="form-control form-control-sm" name="year_id" id="year_id">
                               <option value="">Select Year</option>
                               @foreach($years as $year)
                                 <option value="{{$year->id}}" {{(@$a_student->year_id == $year->id)?'selected':''}}>{{$year->name}}</option>
                               @endforeach
                             </select>
-                            @if($errors->has('year_id'))
-                            <span class="text-danger">{{$errors->first('year_id')}}</span>
-                            @endif
+                         
                           </div>
                         </div>
 
                           <div class="col-md-4">
                           <div class="form-group">
                             <label for="exampleInputEmail1">Class</label>
-                             <select class="form-control form-control-sm" name="student_class_id">
+                             <select class="form-control form-control-sm" name="student_class_id" id="student_class_id">
                               <option value="">Select Class</option>
                               @foreach($classes as $class)
                                 <option value="{{$class->id}}" {{(@$a_student->student_class_id == $class->id)?'selected':''}}>{{$class->name}}</option>
                               @endforeach
                             </select>
-                            @if($errors->has('student_class_id'))
-                            <span class="text-danger">{{$errors->first('student_class_id')}}</span>
-                            @endif
+                         
                           </div>
                         </div>
 
@@ -176,9 +154,7 @@
                                 <option value="{{$group->id}}" {{(@$a_student->group_id == $group->id)?'selected':''}}>{{$group->name}}</option>
                               @endforeach
                             </select>
-                            @if($errors->has('group_id'))
-                            <span class="text-danger">{{$errors->first('group_id')}}</span>
-                            @endif
+                        
                           </div>
                         </div>
 
@@ -191,9 +167,7 @@
                                 <option value="{{$shift->id}}" {{(@$a_student->shift_id == $shift->id)?'selected':''}}>{{$shift->name}}</option>
                               @endforeach
                             </select>
-                            @if($errors->has('shift_id'))
-                            <span class="text-danger">{{$errors->first('shift_id')}}</span>
-                            @endif
+                            
                           </div>
                         </div>
 
@@ -201,9 +175,7 @@
                           <div class="form-group">
                             <label for="exampleInputEmail1">Image</label>
                             <input type="file" name="image" class="form-control form-control-sm" id="imgload">
-                            @if($errors->has('name'))
-                            <span class="text-danger">{{$errors->first('image')}}</span>
-                            @endif
+                            
                           </div>
                         </div>
                         @if($a_student->student->image != NULL)

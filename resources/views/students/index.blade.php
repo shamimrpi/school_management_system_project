@@ -65,7 +65,7 @@
                       </div>
                   </form>
                 </div>
-                <h5 class="card-title">User List</h5>
+                <h5 class="card-title">Student List</h5>
                 <br><br>
 
                   <a href="{{route('student.create')}}" class="btn btn-info fa fa-plus float-sm-right"> Add Student</a>

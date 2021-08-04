@@ -17,7 +17,7 @@
       </div><!-- /.container-fluid -->
     </div>
 
-     <div class="content">
+    <div class="content">
       <div class="container-fluid">
      
    
@@ -28,7 +28,7 @@
                 <h5 class="card-title">Create Employee</h5>
                 <a class="btn btn-info btn-sm float-sm-right" href="{{route('emaployee.all')}}">Employee list</a>
                 <br>
-                <form action="{{route('employee.store')}}" method="POST" id="studentForm" enctype="multipart/form-data">
+                <form action="{{route('employee.store')}}" method="POST" id="employeeForm" enctype="multipart/form-data">
                   @csrf
                 
                   @method('POST')
@@ -161,13 +161,13 @@
                      </div>
                     </div>
                 </form>
-                <div>
+              
               
             </div><!-- /.card -->
           </div>
         
           <!-- /.col-md-6 -->
-      
+      </div>
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     

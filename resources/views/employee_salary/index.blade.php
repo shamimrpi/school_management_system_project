@@ -5,12 +5,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Student Manage</h1>
+            <h1 class="m-0">Employee Salary Manage</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-              <li class="breadcrumb-item active">Student List</li>
+              <li class="breadcrumb-item active">Employee Salary List</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -27,7 +27,7 @@
               <div class="card-body">
 
               
-                <h5 class="card-title">User List</h5>
+                <h5 class="card-title">Employee List</h5>
                 <br><br>
 
                   <a href="{{route('employee.create')}}" class="btn btn-info fa fa-plus float-sm-right"> Add Employee</a>

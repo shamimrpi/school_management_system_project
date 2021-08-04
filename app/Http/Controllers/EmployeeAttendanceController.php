@@ -33,7 +33,7 @@ class EmployeeAttendanceController extends Controller
          foreach ($attendances as $key => $attendance) {
             
             if($attendance->date == $r->date){
-                flash('date already inserted')->error();
+                flash('This date attendance already inserted')->error();
                     return redirect()->route('emaployee.attendnace');
                 }
              }
