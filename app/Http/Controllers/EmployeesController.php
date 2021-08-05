@@ -78,7 +78,7 @@ class EmployeesController extends Controller
             if($r->file('image')){
                 $file = $r->file('image');
                 $fileName = rand(0000,9999).$file->getClientOriginalName();
-                $file->move(public_path('upload/employee_img'),$fileName);
+                $file->move(('upload/employee_img'),$fileName);
                 $employee['image'] = $fileName;
             }
             $employee->save();
@@ -129,9 +129,9 @@ class EmployeesController extends Controller
             $employee->join_date = date('Y-m-d',strtotime($r->join_date));
             if($r->file('image')){
                 $file = $r->file('image');
-                @unlink(public_path('upload/employee_img/'.$employee->image));
+                @unlink(('upload/employee_img/'.$employee->image));
                 $fileName = rand(0000,9999).$file->getClientOriginalName();
-                $file->move(public_path('upload/employee_img'),$fileName);
+                $file->move(('upload/employee_img'),$fileName);
                 $employee['image'] = $fileName;
             }
             $employee->save();

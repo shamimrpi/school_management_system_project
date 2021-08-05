@@ -31,6 +31,7 @@ use App\Http\Controllers\GradePointController;
 use App\Http\Controllers\AcctStudentFeeController;
 use App\Http\Controllers\OthersCostController;
 use App\Http\Controllers\AcctEmployeeController;
+use App\Http\Controllers\MonthlyYearlyReportController;
 
 
 
@@ -183,12 +184,14 @@ Route::prefix('employee')->group(function(){
 	Route::get('/attendnace/{date}/details',[EmployeeAttendanceController::class,'details'])->name('attendnace.details');
 	Route::get('/attendnaces/month',[EmployeeAttendanceController::class,'attendMonth'])->name('attendnace.month');
 	Route::get('/montyAttendance/',[EmployeeAttendanceController::class,'montlyAttendance'])->name('monthly.attendance');
-});
-Route::prefix('marks')->group(function(){
+
 		// Employee Monthly Salary 
 	Route::get('/monthly/salary',[MonthlySalaryController::class,'index'])->name('montly.salary');
 	Route::get('/monthly/slaray/get',[MonthlySalaryController::class,'getSalary'])->name('monthly.salary.get');
 	Route::get('/salary/payslip/{employee_id}',[MonthlySalaryController::class,'paySlip'])->name('salary.payslip');
+});
+Route::prefix('marks')->group(function(){
+	
 
 	Route::get('/marks/getmarks',[GetMarkController::class,'getMark'])->name('get.marks');
 	Route::get('/marks/student/getmarks',[GetMarkController::class,'getStudentMark'])->name('get.student.mark');
@@ -228,7 +231,19 @@ Route::prefix('accounts')->group(function(){
 
 });
 	
+Route::prefix('report')->group(function(){
+	// monthly yearly report controller
+
+	Route::get('/monthly/yearly/report',[MonthlyYearlyReportController::class,'index'])->name('monthly.yearly.report');
+	Route::get('/monthly/yearly/getdata',[MonthlyYearlyReportController::class,'getData'])->name('monthly.yearly.getdata');
 	
+	//mark sheet generat
+	Route::get('/getSearch',[MonthlyYearlyReportController::class,'getSearch'])->name('getSearch');
+	Route::get('/getMarkSheet',[MonthlyYearlyReportController::class,'getMarkSheet'])->name('get.marksheet');
+
+
+	
+});
 
 	Route::get('/getSubject',[DefaultController::class,'getSubject'])->name('get.subject');
 });	

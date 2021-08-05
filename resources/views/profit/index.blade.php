@@ -27,26 +27,28 @@
               <div class="card-body">
 
                 <div class="cart-body">
-                     <form action="{{route('student.roll.gen.store')}}" method="POST" id="myRollGenerateForm">
-                        @csrf
-                    
+                     
                       <div class="row">
                        
                            <div class="col-md-4">
                              <div class="form-group">
-                               <label for="exampleInputEmail1">Select Month <span style="color:red">*</span></label>
-                               <input type="date" name="date" id="date" class="form-control form-control-sm" placeholder="Enter Month ">
+                               <label for="exampleInputEmail1">Start Date <span style="color:red">*</span></label>
+                               <input type="date" name="start_date" id="start_date" class="form-control form-control-sm" >
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                             <div class="form-group">
+                               <label for="exampleInputEmail1">End Date <span style="color:red">*</span></label>
+                               <input type="date" name="end_date" id="end_date" class="form-control form-control-sm" >
                             </div>
                           </div>
                       
                         <div class="col-md-4">
-                          <a id="montly_salary" name="search" class="btn btn-info btn-sm" style="margin-top: 30px">Search</a>
+                          <a id="report" name="search" class="btn btn-info btn-sm" style="margin-top: 30px">Search</a>
                         </div>
-                   
-
-                        
+    
                       </div>
-                   
+                 
                     
                 <br><br>
                 <div class="card-body">
@@ -62,13 +64,14 @@
                         </tr>
                       </thead>
                       <tbody>
-                        @{{#each this}}
+                        
                         <tr>
                           @{{{tdsource}}}
                         </tr>
-                        @{{/each}}
+                       
                       </tbody>
                     </table>
+                   
                   </script>
                 </div>
                   

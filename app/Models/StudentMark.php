@@ -11,4 +11,14 @@ class StudentMark extends Model
      public function student(){
         return $this->belongsTo(User::class,'student_id','id');
       }
+      public function assign_subject(){
+         return $this->belongsTo(AssignSubject::class,'assign_subject_id','id');
+      }
+      public function year(){
+        return $this->belongsTo(Year::class,'year_id','id');
+      }
+      public function studentClass(){
+         return $this->belongsTo(Student_class::class,'student_class_id','id');
+        }
+
 }

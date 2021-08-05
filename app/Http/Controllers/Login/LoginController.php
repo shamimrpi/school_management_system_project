@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Login;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\User;
+use App\Models\Student_class;
 
 class LoginController extends Controller
 {
@@ -37,6 +38,12 @@ class LoginController extends Controller
 
     public function dashboard()
     {
-    	return view('dashboard');
+        $classes = Student_class::all()->count();
+        $users = User::all()->count();
+        $employees = User::where('usertype','employee')->count();
+        $students = User::where('usertype','student')->count();
+
+        
+    	return view('dashboard',compact('classes','users','employees','students'));
     }
 }

@@ -44,11 +44,12 @@
       
 
           
-          <li class="nav-item {{($prefix == '/Admin')?'menu-open':''}}">
+          <li class="nav-item {{($prefix == 'Admin/')?'menu-open':''}}">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-wrench"></i>
               <p>
-                Manage Setup
+                
+                  Manage Setting
                  <i class="right fas fa-angle-left"></i>
                 <span class="badge badge-info right"></span>
               </p>
@@ -117,7 +118,7 @@
               </li>
 
               <li class="nav-item">
-                <a href="{{route('designations.index')}}" class="nav-link {{($route == 'sdesignations.index')?'active':''}}">
+                <a href="{{route('designations.index')}}" class="nav-link {{($route == 'designations.index')?'active':''}}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Designation</p>
                 </a>
@@ -292,6 +293,33 @@
                   <p>Others Cost</p>
                 </a>
               </li>
+           
+
+            </ul>
+          </li>
+          <li class="nav-item  {{($prefix == '/report')?'menu-open':''}}">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-dollar-sign"></i>
+              <p>
+                Report
+                 <i class="right fas fa-angle-left"></i>
+                <span class="badge badge-info right"></span>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('monthly.yearly.report')}}" class="nav-link {{($route == 'monthly.yearly.report')?'active':''}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Monthly/Yearly Profit</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('getSearch')}}" class="nav-link {{($route == 'getSearch')?'active':''}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Student Marksheet</p>
+                </a>
+              </li>
+               
            
 
             </ul>

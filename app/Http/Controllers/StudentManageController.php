@@ -105,7 +105,7 @@ class StudentManageController extends Controller
             if($r->file('image')){
                 $file = $r->file('image');
                 $fileName = rand(0000,9999).$file->getClientOriginalName();
-                $file->move(public_path('upload/studentImage'),$fileName);
+                $file->move(('upload/studentImage'),$fileName);
                 $user['image'] = $fileName;
             }
             $user->save();
@@ -149,9 +149,9 @@ class StudentManageController extends Controller
             
              if($r->file('image')){
                 $file = $r->file('image');
-                
+                @unlink(('upload/studentImage/'.$employee->image));
                 $fileName = rand(0000,9999).$file->getClientOriginalName();
-                $file->move(public_path('upload/studentImage'),$fileName);
+                $file->move(('upload/studentImage'),$fileName);
                 $user['image'] = $fileName;
             }
             $user->save();
@@ -209,7 +209,7 @@ class StudentManageController extends Controller
              if($r->file('image')){
                 $file = $r->file('image');
                 $fileName = rand(0000,9999).$file->getClientOriginalName();
-                $file->move(public_path('upload/studentImage'),$fileName);
+                $file->move(('upload/studentImage'),$fileName);
                 $user['image'] = $fileName;
             }
             $user->save();

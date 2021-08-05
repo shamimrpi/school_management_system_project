@@ -178,7 +178,7 @@
                         </div>
 
                         <div class="col-md-4">
-                          <img id="showImage" src="{{asset('upload/no_found.png')}}"  style="height: 150px;width: 170px;border: 1px solid #eee">
+                          <img id="showImage"   style="height: 150px;width: 170px;border: 1px solid #eee">
                         </div>
                     
                     </div>

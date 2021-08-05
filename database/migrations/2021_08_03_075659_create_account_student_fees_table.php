@@ -19,8 +19,7 @@ class CreateAccountStudentFeesTable extends Migration
             $table->integer('student_class_id')->nullable();
             $table->integer('student_id')->nullable();
             $table->integer('fee_category_id')->nullable();
-            $table->string('year')->nullable();
-            $table->string('month')->nullable();
+            $table->string('date')->nullable();
             $table->string('amount')->nullable();
             $table->timestamps();
         });

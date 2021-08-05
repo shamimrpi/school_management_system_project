@@ -741,5 +741,86 @@ $('#costForm').validate({ // initialize the plugin
   });
  </script>
 
+  <script type="text/javascript">
+   // registration fee javascript
+   $(document).on("click","#report",function(){
+    var start_date = $("#start_date").val();
+    var end_date = $("#end_date").val();
+    if(start_date == ''){
+      $.notify("Start Date Required",{golbalPosition:'top right',className:'error'});
+      return false;
+    }
+    if(end_date == ''){
+      $.notify("End Date Required",{golbalPosition:'top right',className:'error'});
+      return false;
+    }
+  
+    $.ajax({
+        url:"{{route('monthly.yearly.getdata')}}",
+        type: "GET",
+        data:{'start_date':start_date,'end_date':end_date},
+        beforeSend:function(data){
+
+        },
+        success:function(data){
+          var source = $("#document-template").html();
+          var template = Handlebars.compile(source);
+          var html = template(data);
+          $("#DocumentResults").html(html);
+          $('[data-toggle="tooltip"]').tooltip();
+        }
+    });
+
+
+  });
+ </script>
+
+<script type="text/javascript">
+
+   $(document).ready(function () {
+   
+   
+   
+      $('#marksheet').validate({ // initialize the plugin
+       
+          rules: {
+       
+              year_id: {
+       
+                  required: true
+       
+              },
+       
+              student_class_id: {
+       
+                  required: true,
+       
+              },
+       
+              exam_type_id: {
+       
+                  required: true,
+       
+       
+              },
+               id_no: {
+       
+                  required: true,
+       
+       
+              },
+             
+             
+          }
+
+       
+        });
+ 
+});
+ 
+</script>
+ 
+
+
 
 @stack('scripts')

@@ -35,11 +35,8 @@ class AcctStudentFeeController extends Controller
     }
     public function store(Request $r){
         
-       
-       $month = $r->month;
-       $year = $r->year;
-       
-          $data = AccountStudentFee::where('year_id',$r->year_id)->where('student_class_id',$r->student_class_id)->where('fee_category_id',$r->fee_category_id)->where('month',$month)->where('year',$year)->get();
+       $date = date('Y-m',strtotime($r->date));
+          $data = AccountStudentFee::where('year_id',$r->year_id)->where('student_class_id',$r->student_class_id)->where('fee_category_id',$r->fee_category_id)->where('date',$date)->get();
        
       
        $checkdata = $r->checkmanage;
@@ -49,8 +46,8 @@ class AcctStudentFeeController extends Controller
             $data->year_id = $r->year_id;
             $data->student_class_id = $r->student_class_id;
             $data->fee_category_id = $r->fee_category_id;
-            $data->month = $month;
-            $data->year = $year;
+            $data->date = $date;
+           
             $data->student_id = $r->student_id[$checkdata[$i]];
             $data->amount = $r->amount[$checkdata[$i]];
             $data->save();
@@ -70,8 +67,8 @@ class AcctStudentFeeController extends Controller
          $year_id = $r->year_id;
          $student_class_id = $r->student_class_id;
          $fee_category_id = $r->fee_category_id;
-         $month = date('Y',strtotime($r->date));
-         $year = date('m',strtotime($r->date));
+         $date = date('Y-m',strtotime($r->date));
+         
          $data = AssignStudent::with(['student'])->where('year_id',$year_id)->where('student_class_id',$student_class_id)->get();
          
            $html['thsource']  = '<th>SL</th>';
@@ -83,7 +80,7 @@ class AcctStudentFeeController extends Controller
            $html['thsource'] .= '<th>Select</th>';
            foreach($data as $key => $value){
                 $studentFee = FeeCategoryAmount::where('fee_category_id',$fee_category_id)->where('student_class_id',$student_class_id)->first();
-                $acctStudentFee = AccountStudentFee::where('year_id',$year_id)->where('student_class_id',$student_class_id)->where('fee_category_id',$fee_category_id)->where('month',$month)->where('year',$year)->first();
+                $acctStudentFee = AccountStudentFee::where('year_id',$year_id)->where('student_class_id',$student_class_id)->where('fee_category_id',$fee_category_id)->where('date',$date)->first();
 
                if($acctStudentFee !=NUll){
                 $checked = 'checked';
@@ -94,8 +91,8 @@ class AcctStudentFeeController extends Controller
                $html[$key]['tdsource']  = '<td>'.($key+1).'<input type="hidden" name="fee_category_id" value="'.$fee_category_id.'">'. '</td>';
                $html[$key]['tdsource'] .= '<td>'.$value->student->id_no.'<input type="hidden" name="year_id" value="'.$value->year_id.'">'.'</td>';
                $html[$key]['tdsource'] .= '<td>'.$value->student->name.'<input type="hidden" name="student_class_id" value="'.$value->student_class_id.'">'.'</td>';
-               $html[$key]['tdsource'] .= '<td>'.$studentFee->amount.'TK'.'<input type="hidden" name="month" value="'.$month.'">'.'</td>';
-               $html[$key]['tdsource'] .= '<td>'.$studentFee->amount.'TK'.'<input type="hidden" name="year" value="'.$year.'">'.'</td>';
+               $html[$key]['tdsource'] .= '<td>'.$studentFee->amount.'TK'.'<input type="hidden" name="date" value="'.$date.'">'.'</td>';
+               
                $html[$key]['tdsource'] .= '<td>'.$value->discount->discount.'%'.'</td>';
 
                $originalfee = $studentFee->amount;
